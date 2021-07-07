@@ -13,12 +13,12 @@ const blueDark: ShapeColorPalette = {
 
 const blueLight: ShapeColorPalette = {
   active: {
-    fill: "solid rgba(0, 222, 222, 0.4)",
-    border: "solid rgba(0, 222, 222, 1)",
+    fill: "rgba(0, 222, 222, 0.4)",
+    border: "rgba(0, 222, 222, 1)",
   },
   inactive: {
     fill: "rgba(0, 222, 222, 0.15)",
-    border: "solid rgba(0, 222, 222, 0.5)",
+    border: "rgba(0, 222, 222, 0.5)",
   },
 };
 
