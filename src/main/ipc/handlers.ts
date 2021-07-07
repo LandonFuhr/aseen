@@ -20,8 +20,6 @@ import fs from "fs";
 import path from "path";
 import log from "electron-log";
 
-const FFPROBE_BIN_FOLDER = "ffprobe-bin";
-
 export async function handleArenaSetupSave({
   arenaSetup,
   window,

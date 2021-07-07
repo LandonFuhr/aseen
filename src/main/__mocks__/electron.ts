@@ -27,7 +27,7 @@ export class BrowserWindow {
 
 export const ipcMain = {
   on: (
-    channel: string,
+    _channel: string,
     callback: (event: IpcMainEvent, ...args: any[]) => {}
   ) => {
     callbacks.push(callback);
