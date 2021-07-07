@@ -17,12 +17,11 @@ import { SelectVideoArea } from "./VideoArea";
 import { EditableShapeProps } from "../../components/ShapeEditor/Shapes/types";
 import { useVideoPathState } from "../../components/PersistentProviders/VideoPath";
 import { AppBarCustom } from "../../components/AppBar";
-import {
-  threeChamberPresetShapes,
-  fitThreeChamberShapes,
-} from "../../core/arenaPresets/ThreeChamber";
+import { threeChamberPresetShapes } from "../../core/arenaPresets/ThreeChamber/regions";
+import { fitThreeChamberShapes } from "../../core/arenaPresets/ThreeChamber/fitter";
+import { epmPresets } from "../../core/arenaPresets/EPM/regions";
+import { fitEpmShapes } from "../../core/arenaPresets/EPM/fitter";
 import { useShapeController } from "./controllers/shapes";
-import { epmPresets } from "../../core/arenaPresets/epm";
 import { saveArenaSetup } from "../../core/electron/ipc";
 import { useSetArenaSetupPath } from "../../components/PersistentProviders/ArenaSetupPath";
 import { ArenaEditor } from "./ArenaEditor";
@@ -149,6 +148,8 @@ function getSmartShapeFitter(
   switch (arenaType) {
     case ArenaType.ThreeChamber:
       return fitThreeChamberShapes;
+    case ArenaType.PlusMaze:
+      return fitEpmShapes;
     default:
       return ({ shapes }) => shapes;
   }

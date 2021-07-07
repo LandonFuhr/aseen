@@ -1,5 +1,5 @@
 import { Story } from "@storybook/react";
-import { threeChamberPresetShapes } from "../core/arenaPresets/ThreeChamber";
+import { threeChamberPresetShapes } from "../core/arenaPresets/ThreeChamber/regions";
 import { ArenaEditor, ArenaEditorProps } from "../pages/builder/ArenaEditor";
 
 export default {
