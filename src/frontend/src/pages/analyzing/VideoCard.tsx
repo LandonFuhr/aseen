@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import { FolderOutlined } from "@material-ui/icons";
-import React from "react";
 import { useVideoMetadata } from "../../components/VideoMetadata/hooks";
 import { durationToString, getStringFromMemorySize } from "../../core/utils";
 

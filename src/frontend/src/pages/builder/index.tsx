@@ -10,7 +10,7 @@ import {
   ShapePurpose,
   ShapeWithPurpose,
 } from "../../core/types";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BuilderActions } from "./Actions";
 import { BuilderMenu } from "./Menu";
 import { SelectVideoArea } from "./VideoArea";
@@ -28,7 +28,7 @@ import { useSetArenaSetupPath } from "../../components/PersistentProviders/Arena
 import { ArenaEditor } from "./ArenaEditor";
 import { getArenaSetup } from "../../core/ArenaSetupConverter";
 
-const Builder = (props: BuilderProps) => {
+const Builder = () => {
   const arenaTypeState = useArenaType();
   const router = useRouter();
   const vidPathState = useVideoPathState();
@@ -162,7 +162,5 @@ export type VideoArenaFitter = (args: {
 export interface BuilderShapeProps extends EditableShapeProps {
   purpose: ShapePurpose;
 }
-
-interface BuilderProps {}
 
 export default Builder;

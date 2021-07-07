@@ -1,4 +1,3 @@
-import React from "react";
 import { theme } from "./theme";
 import { ThemeProvider } from "@material-ui/core";
 import PersistentProviders from "./components/PersistentProviders";
@@ -9,7 +8,7 @@ import Analyzing from "./pages/analyzing";
 import Results from "./pages/results";
 import { Page } from "./core/types";
 
-const App = (props: any) => {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <PersistentProviders>

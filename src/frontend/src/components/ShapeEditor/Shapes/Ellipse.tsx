@@ -51,7 +51,7 @@ export const EditableEllipse = ({
           });
         }}
         onDragMove={onMove}
-        onTransformEnd={(e) => {
+        onTransformEnd={(_e) => {
           const node = shapeRef.current;
           if (!node) return;
           const scaleX = node.scaleX();

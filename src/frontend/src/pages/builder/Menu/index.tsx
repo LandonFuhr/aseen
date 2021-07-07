@@ -1,5 +1,4 @@
 import { Grid } from "@material-ui/core";
-import { Section } from "./Section";
 import { AreaSelectorItemProps, AreasSection } from "./Sections/AreasSection";
 import { EditableShapeProps } from "../../../components/ShapeEditor/Shapes/types";
 import React, { useMemo } from "react";

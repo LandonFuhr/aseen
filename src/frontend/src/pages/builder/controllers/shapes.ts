@@ -43,7 +43,6 @@ export function useShapeController({
   }
   function handleShapeSelect({
     id,
-    e,
   }: {
     id: string;
     e: KonvaEventObject<MouseEvent>;

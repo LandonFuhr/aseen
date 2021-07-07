@@ -1,6 +1,6 @@
 import { Grid, Container, Box } from "@material-ui/core";
 import { Close, InfoOutlined } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { OutlineButton } from "../../components/Buttons";
 import DestructiveButton from "../../components/Buttons/DestructiveButton";
 import { useVideoPathState } from "../../components/PersistentProviders/VideoPath";

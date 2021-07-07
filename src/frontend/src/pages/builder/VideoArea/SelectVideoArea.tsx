@@ -20,7 +20,11 @@ async function selectVideo(arenaType: ArenaType): Promise<string> {
         title: `Select ${arenaTypeToString(arenaType)} video to analyze`,
         filters: [{ name: "Videos", extensions: ["mkv", "avi", "mp4"] }],
       }).then((selection: DialogSelectionResult) => {
-        return selection.filePaths[0];
+        const filePath = selection.filePaths[0];
+        if (filePath === undefined) {
+          throw new Error("No file paths were returned from open dialog.");
+        }
+        return filePath;
       });
   }
 }

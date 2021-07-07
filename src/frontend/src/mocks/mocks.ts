@@ -22,8 +22,14 @@ export const ElectronMock = {
   resultsFolder: "C:/path/to/fake/results/folder",
 };
 
+export enum MockLevel {
+  WEB,
+  ELECTRON,
+  PRODUCTION,
+}
+
 export function getMockLevel(): MockLevel {
-  const mockLevel = process.env.REACT_APP_MOCK_LEVEL;
+  const mockLevel = process.env["REACT_APP_MOCK_LEVEL"];
   switch (mockLevel) {
     case "WEB":
       return MockLevel.WEB;
@@ -32,10 +38,4 @@ export function getMockLevel(): MockLevel {
     default:
       return MockLevel.PRODUCTION;
   }
-}
-
-export enum MockLevel {
-  WEB,
-  ELECTRON,
-  PRODUCTION,
 }

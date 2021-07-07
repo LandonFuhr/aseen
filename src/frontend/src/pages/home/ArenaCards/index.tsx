@@ -1,4 +1,3 @@
-import React from "react";
 import { ArenaCardsGrid } from "./Grid";
 import {
   ThreeChamberCard,
@@ -12,7 +11,7 @@ import { useRouter } from "../../../components/PersistentProviders/Router";
 import { Page } from "../../../core/types";
 import { useArenaType } from "../../../components/PersistentProviders/ArenaType";
 
-const ArenaCards = (props: ArenaCardsProps) => {
+const ArenaCards = () => {
   const router = useRouter();
   const arenaTypeState = useArenaType();
   function handleClick(arenaType: ArenaType) {
@@ -32,7 +31,5 @@ const ArenaCards = (props: ArenaCardsProps) => {
     />
   );
 };
-
-interface ArenaCardsProps {}
 
 export default ArenaCards;

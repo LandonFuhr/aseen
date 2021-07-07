@@ -1,5 +1,4 @@
 import { Button } from "@material-ui/core";
-import React from "react";
 import { CustomButtonProps } from ".";
 
 const DestructiveButton = (props: CustomButtonProps) => {

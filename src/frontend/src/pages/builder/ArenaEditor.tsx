@@ -23,16 +23,18 @@ export const ArenaEditor = (props: ArenaEditorProps) => {
     [props.shapes]
   );
 
+  const { setShapes, smartShapeFitter } = props;
+
   useEffect(() => {
     if (!metadata) return;
-    props.setShapes((shapes) => {
-      const fittedShapes = props.smartShapeFitter({
+    setShapes((shapes) => {
+      const fittedShapes = smartShapeFitter({
         shapes,
         rawVideoSize: metadata.dimensionsInPx,
       });
       return fittedShapes;
     });
-  }, [metadata]);
+  }, [metadata, setShapes, smartShapeFitter]);
 
   return (
     <div style={{ width: "100%" }}>

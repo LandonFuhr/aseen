@@ -3,7 +3,6 @@ import {
   HelpOutline,
   SchoolOutlined,
 } from "@material-ui/icons";
-import React from "react";
 import { OutlineButton } from "../../../components/Buttons";
 
 export const SavedResultsButton = (props: ButtonBarButtonProps) => {

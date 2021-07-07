@@ -14,7 +14,7 @@ export function videoIsPaused(video: HTMLVideoElement) {
 
 export function useEffectEveryFrame(
   effect: React.EffectCallback,
-  deps?: React.DependencyList | undefined
+  deps?: React.DependencyList
 ) {
   const dependencies = deps ? deps : [];
 
@@ -23,5 +23,5 @@ export function useEffectEveryFrame(
     return () => {
       clearInterval(interval);
     };
-  }, dependencies);
+  }, [effect, ...dependencies]); // eslint-disable-line react-hooks/exhaustive-deps
 }

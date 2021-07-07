@@ -1,5 +1,4 @@
 import { Grid, Box, Container } from "@material-ui/core";
-import React from "react";
 import { AppBarCustom } from "../../components/AppBar";
 import ArenaCards from "./ArenaCards";
 import ButtonsBar from "./ButtonsBar";

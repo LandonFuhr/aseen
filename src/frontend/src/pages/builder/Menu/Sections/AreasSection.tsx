@@ -1,14 +1,11 @@
 import { Section } from "../Section";
 import {
   Grid,
-  Button,
-  Box,
   Card,
   CardContent,
   CardActionArea,
   Typography,
 } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
 import { getShapeFromType } from "../Shapes";
 import {
   ShapeColorPalette,
@@ -29,26 +26,6 @@ export const AreasSection = (props: AreasSectionProps) => {
     </Section>
   );
 };
-
-const AddAreaButton = (props: AddAreaButtonProps) => {
-  return (
-    <Button className="add-area-button">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Add />
-        <Typography variant="overline">Add area</Typography>
-      </Box>
-    </Button>
-  );
-};
-
-interface AddAreaButtonProps {
-  onClick?: () => void;
-}
 
 const AreaSelectorItem = (props: AreaSelectorItemProps) => {
   return (

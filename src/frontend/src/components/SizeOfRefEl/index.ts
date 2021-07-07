@@ -28,13 +28,15 @@ export function useSizeOfRefEl(targetSizeRef: React.RefObject<HTMLElement>) {
   });
 
   useEffect(() => {
-    targetSizeRef.current?.addEventListener("loadeddata", updateSize);
+    const el = targetSizeRef.current;
+    if (!el) return;
+    el.addEventListener("loadeddata", updateSize);
     window.addEventListener("resize", updateSize);
     return () => {
-      targetSizeRef.current?.removeEventListener("loadeddata", updateSize);
+      el.removeEventListener("loadeddata", updateSize);
       window.removeEventListener("resize", updateSize);
     };
-  }, [updateSize]);
+  }, [updateSize, targetSizeRef]);
 
   return size;
 }

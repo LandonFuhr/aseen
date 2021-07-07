@@ -2,11 +2,6 @@ import { useEffect } from "react";
 import { togglePlayPause } from "./utils";
 
 export function useVideoKeyboardShortcuts(video: HTMLVideoElement) {
-  const Keys = {
-    Space: " ",
-    ArrowRight: "ArrowRight",
-    ArrowLeft: "ArrowLeft",
-  };
   const ARROW_SKIP_SIZE_IN_SECONDS = 1;
 
   useEffect(() => {
@@ -42,3 +37,9 @@ export function useVideoKeyboardShortcuts(video: HTMLVideoElement) {
     };
   }, [video]);
 }
+
+const Keys = {
+  Space: " ",
+  ArrowRight: "ArrowRight",
+  ArrowLeft: "ArrowLeft",
+};

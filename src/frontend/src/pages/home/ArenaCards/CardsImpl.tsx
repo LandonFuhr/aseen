@@ -1,4 +1,3 @@
-import React from "react";
 import { ArenaType } from "../../../core/types";
 import { arenaTypeToString } from "../../../core/utils";
 import { ArenaCard } from "./Card";

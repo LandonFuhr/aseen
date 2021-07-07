@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Slider, withStyles } from "@material-ui/core";
 import { useEffectEveryFrame } from "./utils";
 
