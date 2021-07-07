@@ -1,0 +1,15 @@
+# python
+__pycache__/
+.pytest_cache/
+/venv
+
+# dependencies
+/node_modules
+
+# build
+/out
+/dist
+/pyinstaller_build
+
+# misc
+/.vscode

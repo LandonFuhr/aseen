@@ -1,0 +1,60 @@
+    # Project definitions (do not edit)
+Task: example-data
+scorer:
+date: Jun9
+multianimalproject: true
+
+    # Project path (change when moving around)
+project_path: C:\aseen\src\py\analysis_lib\tracking\test_data\example-dlc
+
+    # Annotation data set configuration (and individual video cropping parameters)
+video_sets:
+individuals:
+- individual1
+- individual2
+- individual3
+uniquebodyparts: []
+multianimalbodyparts:
+- bodypart1
+- bodypart2
+- bodypart3
+skeleton:
+- - bodypart1
+  - bodypart2
+- - bodypart1
+  - bodypart3
+- - bodypart2
+  - bodypart3
+bodyparts: MULTI!
+start:
+stop:
+numframes2pick:
+
+    # Plotting configuration
+skeleton_color:
+pcutoff:
+dotsize:
+alphavalue:
+colormap:
+
+    # Training,Evaluation and Analysis configuration
+TrainingFraction:
+- 0.95
+iteration: 0
+default_net_type:
+default_augmenter:
+snapshotindex: -1
+batch_size:
+
+    # Cropping Parameters (for analysis and outlier frame detection)
+cropping: false
+croppedtraining:
+    #if cropping is true for analysis, then set the values here:
+x1:
+x2:
+y1:
+y2:
+
+    # Refinement configuration (parameters from annotation dataset configuration also relevant in this stage)
+corner2move2:
+move2corner:

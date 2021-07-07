@@ -1,0 +1,11 @@
+.github-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.custom-arena-card-outline {
+  border: 2px dashed rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 10px;
+}

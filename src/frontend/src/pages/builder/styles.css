@@ -1,0 +1,20 @@
+.builder-page {
+  padding: 12px 32px 32px 32px;
+}
+
+.video-selection-area {
+  border: 2px dashed #b77222;
+  border-radius: 4px;
+}
+
+.area-card {
+  width: 100px;
+  height: 125px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.add-area-button {
+  width: 100px;
+  height: 125px;
+}

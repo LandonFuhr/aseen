@@ -1,0 +1,52 @@
+{
+  "areas": [
+    {
+      "id": "Chamber 1",
+      "geometry": {
+        "type": "circle",
+        "center": {
+          "x": 100,
+          "y": 200
+        },
+        "radiusX": 50,
+        "radiusY": 75,
+        "rotation": 0
+      },
+      "colorPalette": {
+        "active": {
+          "fill": "rgba(0,0,0,0.2)",
+          "border": "rgba(0,0,0,1)"
+        },
+        "inactive": {
+          "fill": "rgba(0,0,0,0.05)",
+          "border": "rgba(0,0,0,0.2)"
+        }
+      }
+    }
+  ],
+  "interactionZones": [
+    {
+      "id": "Chamber 2",
+      "geometry": {
+        "type": "rectangle",
+        "topLeft": {
+          "x": 100,
+          "y": 200
+        },
+        "width": 50,
+        "height": 75,
+        "rotation": 0
+      },
+      "colorPalette": {
+        "active": {
+          "fill": "rgba(0,0,0,0.2)",
+          "border": "rgba(0,0,0,1)"
+        },
+        "inactive": {
+          "fill": "rgba(0,0,0,0.05)",
+          "border": "rgba(0,0,0,0.2)"
+        }
+      }
+    }
+  ]
+}

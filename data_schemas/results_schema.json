@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "inputPaths": {
+      "arenaSetup": "C:/example/path/to/Arena.json",
+      "trackingResults": "C:/example/path/to/Tracking.h5"
+    },
+    "behaviourAnalysisAlgorithmId": "ANALYSIS-ALG-ID"
+  },
+  "data": [
+    {
+      "animalId": "Mouse 1",
+      "statsPerRegion": [
+        {
+          "regionId": "Chamber 1",
+          "secondsFullyInside": 15.3,
+          "secondsPartlyInside": 195.2,
+          "secondsOfInteraction": 12.4,
+          "nEntries": 14
+        },
+        {
+          "regionId": "Cup 1",
+          "secondsFullyInside": 15.3,
+          "secondsPartlyInside": 195.2,
+          "secondsOfInteraction": 12.4,
+          "nEntries": 30
+        }
+      ]
+    },
+    {
+      "animalId": "Mouse 2",
+      "statsPerRegion": [
+        {
+          "regionId": "Chamber 1",
+          "secondsFullyInside": 15.3,
+          "secondsPartlyInside": 195.2,
+          "secondsOfInteraction": 12.4,
+          "nEntries": 14
+        },
+        {
+          "regionId": "Cup 1",
+          "secondsFullyInside": 15.3,
+          "secondsPartlyInside": 195.2,
+          "secondsOfInteraction": 12.4,
+          "nEntries": 30
+        }
+      ]
+    }
+  ]
+}
