@@ -4,6 +4,10 @@ const rootDir = path.join(__dirname, "..");
 const buildDir = path.join(rootDir, "dist");
 const analysisModulesDir = path.join(buildDir, "analysis_modules");
 const pySrc = path.join(rootDir, "src", "py");
+const ffprobe = {
+  src: path.join(rootDir, "src", "main", "ffprobe-bin"),
+  dst: path.join(buildDir, "ffprobe-bin"),
+};
 const pyinstaller = {
   pythonPath: path.join(rootDir, "venv", "Scripts", "python.exe"),
   workPath: path.join(rootDir, "pyinstaller_build"),
@@ -40,4 +44,5 @@ module.exports = {
   tracking,
   splash,
   pyinstaller,
+  ffprobe,
 };
