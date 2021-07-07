@@ -47,6 +47,7 @@ const AreaSelectorItem = (props: AreaSelectorItemProps) => {
                 align="center"
                 variant="caption"
                 style={props.isSelected ? { fontWeight: 600 } : undefined}
+                noWrap={true}
               >
                 {props.title}
               </Typography>
