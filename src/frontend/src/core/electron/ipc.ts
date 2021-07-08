@@ -1,8 +1,11 @@
 import {
+  BehaviourResults,
   CREATE_VIDEO_CHANNEL,
   FileMetadata,
   FileMetadataRequest,
+  JsonFileOpenRequest,
   OPEN_DIALOG_CHANNEL,
+  READ_BEHAVIOUR_RESULTS_FILE_CHANNEL,
   SAVE_ARENA_SETUP_CHANNEL,
   VideoCreatorTrigger,
   VID_METADATA_CHANNEL,
@@ -53,6 +56,12 @@ export async function openDialog(
   options: Electron.OpenDialogOptions
 ): Promise<Electron.OpenDialogReturnValue> {
   return ipcRenderer.invoke(OPEN_DIALOG_CHANNEL, options);
+}
+
+export async function readBehaviourResultsFile(
+  request: JsonFileOpenRequest
+): Promise<BehaviourResults> {
+  return ipcRenderer.invoke(READ_BEHAVIOUR_RESULTS_FILE_CHANNEL, request);
 }
 
 export { ipcRenderer };

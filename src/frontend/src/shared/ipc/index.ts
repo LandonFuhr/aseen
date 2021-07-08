@@ -1,4 +1,5 @@
 import { AnalyzingProgressStep } from "../../pages/analyzing/types";
+import type { BehaviourResults } from "./BehaviourResults";
 
 export const OPEN_DIALOG_CHANNEL = "open-dialog";
 export const VID_METADATA_CHANNEL = "get-file-metadata";
@@ -7,6 +8,7 @@ export const TRACKING_CHANNEL = "tracking";
 export const BEHAVIOUR_CHANNEL = "behaviour";
 export const CREATE_VIDEO_CHANNEL = "create-video";
 export const RESULTS_PATHS_CREATION_CHANNEL = "create-results-paths";
+export const READ_BEHAVIOUR_RESULTS_FILE_CHANNEL = "read-behaviour-results";
 
 export interface FileMetadata {
   createdAtDate: Date;
@@ -68,3 +70,9 @@ export interface ResultsPaths {
   behaviourAssayResultsJsonPath: string;
   outputVideoPath: string;
 }
+
+export interface JsonFileOpenRequest {
+  path: string;
+}
+
+export type { BehaviourResults };

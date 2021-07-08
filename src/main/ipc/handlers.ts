@@ -10,13 +10,14 @@ import {
   ArenaSetupPath,
   FileMetadata,
   FileMetadataRequest,
+  JsonFileOpenRequest,
   ResultsPaths,
   ResultsPathsRequest,
 } from "../../frontend/src/shared/ipc";
 import { ArenaSetup } from "../../frontend/src/shared/ipc/ArenaSetup";
 import { ffprobePath } from "../ffprobe-static-webpack";
 import ffprobe from "ffprobe";
-import fs from "fs";
+import fs, { promises as fspromises } from "fs";
 import path from "path";
 import log from "electron-log";
 
@@ -127,4 +128,13 @@ export function handleResultsPathsCreationRequest(
     behaviourAssayResultsJsonPath: path.join(resultsFolder, "Behaviour.json"),
     outputVideoPath: path.join(resultsFolder, "Out.mp4"),
   };
+}
+
+export async function handleReadBehaviourResultsFileRequest(
+  _event: IpcMainInvokeEvent,
+  request: JsonFileOpenRequest
+) {
+  return fspromises.readFile(request.path).then((data) => {
+    return JSON.parse(data.toString());
+  });
 }
