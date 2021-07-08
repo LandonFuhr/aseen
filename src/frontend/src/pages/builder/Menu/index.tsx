@@ -15,30 +15,37 @@ const BuilderMenu = (props: BuilderMenuProps) => {
     );
   }, [props.shapes]);
 
+  const hasAreas = areas.length > 0;
+  const hasInteractionZones = interactionZones.length > 0;
+
   return (
     <Grid container spacing={2}>
-      <Grid item>
-        <AreasSection
-          title="Areas"
-          areas={areas.map((shape) =>
-            shapeToAreaSelectorItemProps({
-              shape,
-              setSelectedShapeId: props.setSelectedShapeId,
-            })
-          )}
-        />
-      </Grid>
-      <Grid item>
-        <AreasSection
-          title="Interaction Zones"
-          areas={interactionZones.map((shape) =>
-            shapeToAreaSelectorItemProps({
-              shape,
-              setSelectedShapeId: props.setSelectedShapeId,
-            })
-          )}
-        />
-      </Grid>
+      {hasAreas && (
+        <Grid item>
+          <AreasSection
+            title="Areas"
+            areas={areas.map((shape) =>
+              shapeToAreaSelectorItemProps({
+                shape,
+                setSelectedShapeId: props.setSelectedShapeId,
+              })
+            )}
+          />
+        </Grid>
+      )}
+      {hasInteractionZones && (
+        <Grid item>
+          <AreasSection
+            title="Interaction Zones"
+            areas={interactionZones.map((shape) =>
+              shapeToAreaSelectorItemProps({
+                shape,
+                setSelectedShapeId: props.setSelectedShapeId,
+              })
+            )}
+          />
+        </Grid>
+      )}
     </Grid>
   );
 };
