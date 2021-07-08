@@ -1,18 +1,18 @@
 import { Box, Grid } from "@material-ui/core";
 import { AppBarCustom } from "../../components/AppBar";
 import { OutlineButton } from "../../components/Buttons";
-import { useResultsPath } from "../../components/PersistentProviders/ResultsPath";
+import { useResultsPaths } from "../../components/PersistentProviders/ResultsPaths";
 import { FolderOutlined, HomeRounded } from "@material-ui/icons";
 import { useRouter } from "../../components/PersistentProviders/Router";
 import { Page } from "../../core/types";
 import { openFolder } from "../../core/electron/shell";
 
 const Results = () => {
-  const resultsPath = useResultsPath();
+  const resultsPaths = useResultsPaths();
   const router = useRouter();
   function handleOpenResultsFolder() {
-    if (resultsPath === null) return;
-    openFolder(resultsPath)
+    if (resultsPaths === null) return;
+    openFolder(resultsPaths.resultsFolder)
       .then((errorMessage) => {
         if (errorMessage !== "") {
           console.error("Folder open error:", errorMessage);
@@ -22,6 +22,7 @@ const Results = () => {
         console.error(e);
       });
   }
+
   return (
     <>
       <AppBarCustom text="Results" />
@@ -34,7 +35,7 @@ const Results = () => {
               onClick={() => router.setPage(Page.home)}
             />
           </Grid>
-          {resultsPath && (
+          {resultsPaths && (
             <Grid item>
               <OutlineButton
                 text="Open Results Folder"

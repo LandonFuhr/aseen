@@ -2,7 +2,7 @@ import React from "react";
 import { RouterProvider } from "./Router";
 import { ArenaTypeProvider } from "./ArenaType";
 import { VideoPathProvider } from "./VideoPath";
-import { ResultsPathProvider } from "./ResultsPath";
+import { ResultsPathProvider } from "./ResultsPaths";
 import { ArenaSetupPathProvider } from "./ArenaSetupPath";
 
 const PersistentProviders = (props: PersistentProvidersProps) => {

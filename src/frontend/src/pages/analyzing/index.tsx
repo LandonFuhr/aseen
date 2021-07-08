@@ -14,6 +14,7 @@ import { ProgressUpdate } from "../../shared/ipc";
 import { runAnalyzer } from "../../core/Analyzer";
 import { useCreateResultsPaths } from "./useCreateResultsPaths";
 import { useVideoMetadata } from "../../components/VideoMetadata/hooks";
+import { useSetResultsPaths } from "../../components/PersistentProviders/ResultsPaths";
 
 const Analyzing = () => {
   const vidPathState = useVideoPathState();
@@ -24,6 +25,7 @@ const Analyzing = () => {
   );
   const metadata = useVideoMetadata(vidPathState.path);
   const resultsPaths = useCreateResultsPaths({ arenaSetupPath });
+  const setResultsPaths = useSetResultsPaths();
 
   useEffect(() => {
     const videoPath = vidPathState.path;
@@ -46,12 +48,20 @@ const Analyzing = () => {
       },
     }).then(() => {
       if (cancelled) return;
+      setResultsPaths(resultsPaths);
       router.setPage(Page.results);
     });
     return () => {
       cancelled = true;
     };
-  }, [router, vidPathState, arenaSetupPath, resultsPaths, metadata]);
+  }, [
+    router,
+    vidPathState,
+    arenaSetupPath,
+    resultsPaths,
+    metadata,
+    setResultsPaths,
+  ]);
 
   function handleCancel() {
     router.setPage(Page.home);
