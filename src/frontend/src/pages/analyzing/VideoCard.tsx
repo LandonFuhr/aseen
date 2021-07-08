@@ -27,10 +27,9 @@ const VideoCardStatic = (props: VideoCardStaticProps) => {
   return (
     <Card>
       <CardMedia
-        component="img"
-        alt={`Screenshot of ${props.videoPath}.`}
-        height="300"
-        image="placeholder.png"
+        component="video"
+        width="100%"
+        src={props.videoPath ? props.videoPath : undefined}
         title={`${props.videoPath}`}
       />
       <CardContent>
