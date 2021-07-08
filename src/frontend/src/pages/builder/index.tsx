@@ -27,6 +27,7 @@ import { useSetArenaSetupPath } from "../../components/PersistentProviders/Arena
 import { ArenaEditor } from "./ArenaEditor";
 import { getArenaSetup } from "../../core/ArenaSetupConverter";
 import { nortPresetShapes } from "../../core/arenaPresets/NORT/regions";
+import { fitNortShapes } from "../../core/arenaPresets/NORT/fitter";
 
 const Builder = () => {
   const arenaTypeState = useArenaType();
@@ -153,6 +154,8 @@ function getSmartShapeFitter(
       return fitThreeChamberShapes;
     case ArenaType.PlusMaze:
       return fitEpmShapes;
+    case ArenaType.NORT:
+      return fitNortShapes;
     default:
       return ({ shapes }) => shapes;
   }
