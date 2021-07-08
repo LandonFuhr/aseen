@@ -1,20 +1,6 @@
-import {
-  FolderOutlined,
-  HelpOutline,
-  SchoolOutlined,
-} from "@material-ui/icons";
+import { HelpOutline } from "@material-ui/icons";
 import { OutlineButton } from "../../../components/Buttons";
 import { openExternalLink } from "../../../core/electron/shell";
-
-export const SavedResultsButton = (props: ButtonBarButtonProps) => {
-  return (
-    <OutlineButton
-      onClick={props.onClick}
-      text="Saved Results"
-      icon={<FolderOutlined />}
-    />
-  );
-};
 
 export const HelpAndDocsButton = () => {
   return (
@@ -24,16 +10,6 @@ export const HelpAndDocsButton = () => {
       }
       text="Help and Documentation"
       icon={<HelpOutline />}
-    />
-  );
-};
-
-export const DemoButton = (props: ButtonBarButtonProps) => {
-  return (
-    <OutlineButton
-      onClick={props.onClick}
-      text="Demo"
-      icon={<SchoolOutlined />}
     />
   );
 };
@@ -53,7 +29,3 @@ export const GithubButton = () => {
     />
   );
 };
-
-interface ButtonBarButtonProps {
-  onClick: () => void;
-}
