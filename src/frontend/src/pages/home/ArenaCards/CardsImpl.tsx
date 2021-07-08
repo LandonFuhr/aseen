@@ -7,7 +7,7 @@ export const PlusMazeCard = (props: ArenaCardProps) => {
     <ArenaCard
       title={arenaTypeToString(ArenaType.PlusMaze)}
       subtitle="Anxiety test"
-      imgSrc="placeholder.png"
+      imgSrc="epm_card.png"
       onClick={props.onClick}
     />
   );
@@ -18,7 +18,7 @@ export const CustomArenaCard = (props: ArenaCardProps) => {
     <ArenaCard
       title={arenaTypeToString(ArenaType.Custom)}
       subtitle="Create your own test"
-      imgSrc="placeholder.png"
+      imgSrc="custom_arena_card.png"
       onClick={props.onClick}
       flat
     />
@@ -30,7 +30,7 @@ export const ThreeChamberCard = (props: ArenaCardProps) => {
     <ArenaCard
       title={arenaTypeToString(ArenaType.ThreeChamber)}
       subtitle="Memory and sociability test"
-      imgSrc="placeholder.png"
+      imgSrc="three_chamber_card.png"
       onClick={props.onClick}
     />
   );
@@ -41,7 +41,7 @@ export const NortCard = (props: ArenaCardProps) => {
     <ArenaCard
       title={arenaTypeToString(ArenaType.NORT)}
       subtitle="Memory test"
-      imgSrc="placeholder.png"
+      imgSrc="nort_card.png"
       onClick={props.onClick}
     />
   );
