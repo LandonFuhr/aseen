@@ -1,10 +1,5 @@
 import { ArenaCardsGrid } from "./Grid";
-import {
-  ThreeChamberCard,
-  PlusMazeCard,
-  NortCard,
-  CustomArenaCard,
-} from "./CardsImpl";
+import { ThreeChamberCard, PlusMazeCard, NortCard } from "./CardsImpl";
 import "../styles.css";
 import { ArenaType } from "../../../core/types";
 import { useRouter } from "../../../components/PersistentProviders/Router";
@@ -26,7 +21,6 @@ const ArenaCards = () => {
         />,
         <PlusMazeCard onClick={() => handleClick(ArenaType.PlusMaze)} />,
         <NortCard onClick={() => handleClick(ArenaType.NORT)} />,
-        <CustomArenaCard onClick={() => handleClick(ArenaType.Custom)} />,
       ]}
     />
   );
