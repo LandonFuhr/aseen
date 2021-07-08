@@ -26,6 +26,7 @@ import { saveArenaSetup } from "../../core/electron/ipc";
 import { useSetArenaSetupPath } from "../../components/PersistentProviders/ArenaSetupPath";
 import { ArenaEditor } from "./ArenaEditor";
 import { getArenaSetup } from "../../core/ArenaSetupConverter";
+import { nortPresetShapes } from "../../core/arenaPresets/NORT/regions";
 
 const Builder = () => {
   const arenaTypeState = useArenaType();
@@ -137,6 +138,8 @@ function getInitialShapes(
       return threeChamberPresetShapes;
     case ArenaType.PlusMaze:
       return epmPresets;
+    case ArenaType.NORT:
+      return nortPresetShapes;
     default:
       return [];
   }

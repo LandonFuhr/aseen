@@ -33,6 +33,17 @@ const greenDark: ShapeColorPalette = {
   },
 };
 
+const greenLight: ShapeColorPalette = {
+  active: {
+    fill: "rgba(134, 222, 0, 0.2)",
+    border: "rgba(134, 222, 0, 1.0)",
+  },
+  inactive: {
+    fill: "rgba(134, 222, 0, 0.15)",
+    border: "rgba(134, 222, 0, 0.5)",
+  },
+};
+
 const pink: ShapeColorPalette = {
   active: {
     fill: "rgba(255, 0, 168, 0.2)",
@@ -49,4 +60,5 @@ export const colorPalettePresets = {
   blueLight,
   pink,
   greenDark,
+  greenLight,
 };
