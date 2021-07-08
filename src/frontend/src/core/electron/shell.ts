@@ -12,3 +12,7 @@ try {
 export async function openFolder(path: string) {
   return shell.openPath(path);
 }
+
+export async function openExternalLink(url: string) {
+  await shell.openExternal(url);
+}

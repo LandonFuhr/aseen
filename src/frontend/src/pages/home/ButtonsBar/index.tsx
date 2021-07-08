@@ -9,14 +9,12 @@ import "../styles.css";
 
 const ButtonsBar = () => {
   function handleSavedResultsClick() {}
-  function handleHelpClick() {}
   function handleDemoClick() {}
-  function handleGithubClick() {}
   const buttons = [
     <SavedResultsButton onClick={handleSavedResultsClick} />,
-    <HelpAndDocsButton onClick={handleHelpClick} />,
+    <HelpAndDocsButton />,
     <DemoButton onClick={handleDemoClick} />,
-    <GithubButton onClick={handleGithubClick} />,
+    <GithubButton />,
   ];
   return (
     <Grid container spacing={4}>

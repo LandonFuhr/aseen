@@ -4,6 +4,7 @@ import {
   SchoolOutlined,
 } from "@material-ui/icons";
 import { OutlineButton } from "../../../components/Buttons";
+import { openExternalLink } from "../../../core/electron/shell";
 
 export const SavedResultsButton = (props: ButtonBarButtonProps) => {
   return (
@@ -15,10 +16,12 @@ export const SavedResultsButton = (props: ButtonBarButtonProps) => {
   );
 };
 
-export const HelpAndDocsButton = (props: ButtonBarButtonProps) => {
+export const HelpAndDocsButton = () => {
   return (
     <OutlineButton
-      onClick={props.onClick}
+      onClick={() =>
+        openExternalLink("https://github.com/LandonFuhr/aseen/wiki")
+      }
       text="Help and Documentation"
       icon={<HelpOutline />}
     />
@@ -35,10 +38,10 @@ export const DemoButton = (props: ButtonBarButtonProps) => {
   );
 };
 
-export const GithubButton = (props: ButtonBarButtonProps) => {
+export const GithubButton = () => {
   return (
     <OutlineButton
-      onClick={props.onClick}
+      onClick={() => openExternalLink("https://github.com/LandonFuhr/aseen")}
       text="Source Code"
       icon={
         <img
