@@ -16,3 +16,7 @@ export async function openFolder(path: string) {
 export async function openExternalLink(url: string) {
   await shell.openExternal(url);
 }
+
+export function showFileInFolder(path: string) {
+  shell.showItemInFolder(path);
+}
