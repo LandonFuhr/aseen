@@ -32,6 +32,10 @@ def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: Dlc
                     individual_was_in_region_last_frame[individual.name][region._id] = True
                 else:
                     individual_was_in_region_last_frame[individual.name][region._id] = False
+
+                if individual_is_partly_inside_shape(individual, region.geometry):
+                    get_region_stats(individual.name, region._id,
+                                     results).frames_partly_inside += 1
     return results
 
 
@@ -42,6 +46,15 @@ def create_entry_tracker(individual_names: List[str], region_ids: List[str]) -> 
         for region_id in region_ids:
             entry_tracker[individual_name][region_id] = False
     return entry_tracker
+
+
+def individual_is_partly_inside_shape(individual: Individual, shape: Union[CircleGeometry, RectangleGeometry]) -> bool:
+    polygon = polygon_from_shape(shape)
+    for bp in individual.bodyparts:
+        point = geometry.Point(bp.coords.x, bp.coords.y)
+        if polygon.contains(point):
+            return True
+    return False
 
 
 def individual_is_fully_inside_shape(individual: Individual, shape: Union[CircleGeometry, RectangleGeometry]) -> bool:

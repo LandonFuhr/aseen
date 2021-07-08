@@ -68,8 +68,40 @@ def test_it_counts_frames_fully_inside_areas():
         'Mouse 1', '2', results).frames_fully_inside == 2
 
 
-def test_it_counts_frames_partally_inside_areas():
-    pass
+def test_it_counts_frames_partly_inside_areas():
+    point_in_both = [2.0, 2.0, 1.0]
+    point_only_in_1 = [3.5, 3.5, 1.0]
+    point_only_in_2 = [0.5, 0.5, 1.0]
+    point_in_neither = [10.0, 10.0, 1.0]
+    dlc_results = DlcResults(
+        get_labels(['Mouse 1'], ['ear_left', 'ear_right']),
+        np.array([
+            point_in_both + point_in_neither,  # partly inside both
+            point_in_neither + point_only_in_1,  # partly inside 1
+            point_only_in_1 + point_only_in_1,  # partly inside 1
+            point_only_in_2 + point_in_neither,  # partly inside 2
+            point_in_both + point_in_both,  # partly inside both
+            point_only_in_1 + point_only_in_2,  # partly inside both
+            point_in_neither + point_in_neither  # partly inside neither
+        ], dtype=float))
+    arena_setup = ArenaSetup(
+        areas=[Region(_id="1",
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=1, y=1),
+                          width=3, height=3, rotation=0), color_palette=None),
+               Region(_id="2",
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=0, y=0),
+                          width=3, height=3, rotation=0), color_palette=None)],
+        interaction_zones=[])
+
+    results = simple_behavioural_assay_algorithm(
+        arena_setup=arena_setup, dlc_results=dlc_results)
+
+    assert get_region_stats(
+        'Mouse 1', '1', results).frames_partly_inside == 5
+    assert get_region_stats(
+        'Mouse 1', '2', results).frames_partly_inside == 4
 
 
 def test_it_counts_interaction_frames():
