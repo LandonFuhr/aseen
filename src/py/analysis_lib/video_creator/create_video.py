@@ -74,4 +74,4 @@ def setup_vid_in_and_out(input_video_path, output_video_path):
 def get_dot_radius(frame_size) -> int:
     height, width, _ = frame_size
     size = min(height, width)
-    return int(size * 0.025)
+    return int(size * 0.02)
