@@ -25,7 +25,8 @@ def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path
                     pos = (int(x), int(y))
                     color = mouse_colors[individual_index]
                     radius = get_dot_radius(frame.shape)
-                    frame = cv2.circle(frame, pos, radius, color, -1)
+                    frame = cv2.circle(frame, pos, radius,
+                                       color, -1, lineType=cv2.LINE_AA)
 
         return frame
 
