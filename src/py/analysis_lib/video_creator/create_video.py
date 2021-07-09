@@ -8,7 +8,6 @@ from analysis_lib.video_creator.colors import mouse_colors
 
 
 def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path: str, output_video_path: str):
-    start = time.time()
     dlc_dataframe = pd.read_hdf(tracking_h5_path)
     dlc_results = DlcResults.from_pandas(dlc_dataframe)
 
@@ -32,8 +31,6 @@ def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path
 
     modify_video(input_video_path=raw_video_path,
                  output_video_path=output_video_path, modifier_fn=modify_frame)
-
-    print(time.time() - start)
 
 
 def modify_video(input_video_path, output_video_path, modifier_fn) -> None:
@@ -78,10 +75,3 @@ def get_dot_radius(frame_size) -> int:
     height, width, _ = frame_size
     size = min(height, width)
     return int(size * 0.025)
-
-
-if __name__ == "__main__":
-    create_video(raw_video_path=r'C:\OfflineFiles\ChanLab Data\Behaviour\vid2.mp4',
-                 tracking_h5_path=r'C:\Users\lando\OneDrive\Desktop\Tracking.h5',
-                 behaviour_json_path=r'C:\Users\lando\OneDrive\Desktop\Behaviour.json',
-                 output_video_path=r'C:\Users\lando\OneDrive\Desktop\Out.mp4')
