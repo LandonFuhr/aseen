@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { readBehaviourResultsFile } from "../../core/electron/ipc";
 import { BehaviourResults } from "../../shared/ipc";
 import { ResultsTable } from "./ResultsTable";
+import { mouseColors } from "../../core/mouseColors";
 
 const Results = () => {
   const resultsPaths = useResultsPaths();
@@ -75,7 +76,11 @@ const Results = () => {
               <Grid container spacing={4}>
                 {behaviourResults?.data.map((data, i) => (
                   <Grid key={i} item xs={12}>
-                    <ResultsTable data={data} />
+                    <ResultsTable
+                      data={data}
+                      backgroundColor={mouseColors[i]?.translucent}
+                      dotColor={mouseColors[i]?.opaque}
+                    />
                   </Grid>
                 ))}
               </Grid>

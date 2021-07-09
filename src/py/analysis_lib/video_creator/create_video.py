@@ -4,6 +4,7 @@ import time
 
 from analysis_lib.dlc_results_adapter import DlcResults
 from analysis_lib.video_creator.progress_updater import send_progress_update
+from analysis_lib.video_creator.colors import mouse_colors
 
 
 def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path: str, output_video_path: str):
@@ -22,7 +23,7 @@ def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path
                 y = bodypart.coords.y
                 if not pd.isnull(x) and not pd.isnull(y):
                     pos = (int(x), int(y))
-                    color = get_individual_color_from_index(individual_index)
+                    color = mouse_colors[individual_index]
                     radius = get_dot_radius(frame.shape)
                     frame = cv2.circle(frame, pos, radius, color, -1)
 
@@ -72,23 +73,14 @@ def setup_vid_in_and_out(input_video_path, output_video_path):
     return vid_in, vid_out
 
 
-def get_individual_color_from_index(index: int):
-    if index == 0:
-        return (0, 0, 255)
-    if index == 1:
-        return (0, 255, 0)
-    if index == 2:
-        return (255, 0, 0)
-
-
 def get_dot_radius(frame_size) -> int:
     height, width, _ = frame_size
     size = min(height, width)
-    return int(size * 0.03)
+    return int(size * 0.025)
 
 
 if __name__ == "__main__":
-    create_video(raw_video_path=r'C:\OfflineFiles\ChanLab Data\Behaviour\example_video_very_short.mp4',
-                 tracking_h5_path=r'C:\Users\lando\OneDrive\Desktop\example_results\Tracking.h5',
-                 behaviour_json_path=r'C:\Users\lando\OneDrive\Desktop\example_results\Behaviour.json',
-                 output_video_path=r'C:\Users\lando\OneDrive\Desktop\example_results\out.mp4')
+    create_video(raw_video_path=r'C:\OfflineFiles\ChanLab Data\Behaviour\vid2.mp4',
+                 tracking_h5_path=r'C:\Users\lando\OneDrive\Desktop\Tracking.h5',
+                 behaviour_json_path=r'C:\Users\lando\OneDrive\Desktop\Behaviour.json',
+                 output_video_path=r'C:\Users\lando\OneDrive\Desktop\Out.mp4')

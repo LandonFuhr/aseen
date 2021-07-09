@@ -1,4 +1,5 @@
 import { Story } from "@storybook/react";
+import { mouseColors } from "../core/mouseColors";
 import { ResultsTable, ResultsTableProps } from "../pages/results/ResultsTable";
 
 export default {
@@ -29,4 +30,6 @@ Default.args = {
       },
     ],
   },
+  backgroundColor: mouseColors[0]?.translucent,
+  dotColor: mouseColors[0]?.opaque,
 };

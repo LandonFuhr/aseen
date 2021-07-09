@@ -1,5 +1,4 @@
 import {
-  TableContainer,
   Table,
   TableHead,
   TableBody,
@@ -13,14 +12,27 @@ import {
   BehaviourResultsData,
   RegionStats,
 } from "../../shared/ipc/BehaviourResults";
+import "./ResultsTable.css";
 
-export const ResultsTable = ({ data }: ResultsTableProps) => {
+export const ResultsTable = ({
+  data,
+  backgroundColor,
+  dotColor,
+}: ResultsTableProps) => {
   return (
-    <Box>
-      <Box ml={2} mb={1}>
-        <Typography variant="h5">{data.animalId}</Typography>
-      </Box>
-      <TableContainer component={Paper}>
+    <Paper>
+      <Box pt={2}>
+        <Box
+          ml={2}
+          mb={1}
+          style={{ backgroundColor }}
+          className="mouse-name-container"
+          display="flex"
+          alignItems="center"
+        >
+          <ColorDot color={dotColor} />
+          <Typography variant="h6">{data.animalId}</Typography>
+        </Box>
         <Table>
           <TableHead>
             <TableRow>
@@ -37,8 +49,26 @@ export const ResultsTable = ({ data }: ResultsTableProps) => {
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
-    </Box>
+      </Box>
+    </Paper>
+  );
+};
+
+const ColorDot = ({ color }: { color?: string }) => {
+  if (!color) {
+    return null;
+  }
+
+  return (
+    <div
+      style={{
+        width: "20px",
+        height: "20px",
+        marginRight: "15px",
+        backgroundColor: color,
+        borderRadius: "50%",
+      }}
+    />
   );
 };
 
@@ -56,6 +86,8 @@ const ResultsRow = ({ regionStats }: ResultsRowProps) => {
 
 export interface ResultsTableProps {
   data: BehaviourResultsData;
+  backgroundColor?: string;
+  dotColor?: string;
 }
 
 interface ResultsRowProps {
