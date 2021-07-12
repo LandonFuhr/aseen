@@ -1,4 +1,4 @@
-const path = require("path");
+import path from "path";
 
 const rootDir = path.join(__dirname, "..");
 const buildDir = path.join(rootDir, "dist");
@@ -36,7 +36,7 @@ const behaviour = {
   name: "behaviour",
 };
 
-module.exports = {
+export {
   analysisModulesDir,
   buildDir,
   behaviour,

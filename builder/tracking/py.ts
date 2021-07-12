@@ -1,6 +1,6 @@
-const fse = require("fs-extra");
-const { tracking } = require("../paths");
-const { runPyinstaller } = require("../pyinstaller");
+import fse from "fs-extra";
+import { tracking } from "../paths";
+import { runPyinstaller } from "../pyinstaller";
 const { removeProblemFiles } = require("./removeProblemFiles");
 
 async function copyDlcProject() {

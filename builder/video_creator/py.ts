@@ -1,5 +1,5 @@
-const { videoCreator } = require("../paths");
-const { runPyinstaller } = require("../pyinstaller");
+import { videoCreator } from "../paths";
+import { runPyinstaller } from "../pyinstaller";
 
 runPyinstaller(
   videoCreator.main,

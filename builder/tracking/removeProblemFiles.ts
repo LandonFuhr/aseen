@@ -18,10 +18,10 @@
     - re-zipping [chelsea.png] into [chelsea.zip] using Windows File Explorer
     - removing all contents from [chelsea.zip] but still including the empty [chelsea.zip] folder
 */
-const fse = require("fs-extra");
-const path = require("path");
+import fse from "fs-extra";
+import path from "path";
 
-const { tracking } = require("../paths");
+import { tracking } from "../paths";
 
 const imageioChelseaPath = path.join(
   "imageio",
@@ -41,7 +41,9 @@ const motorcyclePath = path.join(baseDir, skimageMotorcyclePath);
 const chelseaPath = path.join(baseDir, imageioChelseaPath);
 
 async function removeProblemFiles() {
+  // @ts-ignore
   fse.removeSync(motorcyclePath, { force: true });
+  // @ts-ignore
   fse.removeSync(chelseaPath, { recursive: true, force: true });
 }
 

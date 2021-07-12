@@ -1,5 +1,5 @@
-const { behaviour } = require("../paths");
-const { runPyinstaller } = require("../pyinstaller");
+import { behaviour } from "../paths";
+import { runPyinstaller } from "../pyinstaller";
 
 runPyinstaller(
   behaviour.main,

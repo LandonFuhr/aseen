@@ -1,8 +1,8 @@
-const { spawn } = require("child_process");
-const { pyinstaller } = require("./paths");
+import { spawn } from "child_process";
+import { pyinstaller } from "./paths";
 
-async function runPyinstaller(...cmds) {
-  return new Promise((resolve) => {
+export async function runPyinstaller(...cmds: any[]) {
+  return new Promise<void>((resolve) => {
     const child = spawn(pyinstaller.pythonPath, [
       "-m",
       "PyInstaller",
@@ -25,7 +25,3 @@ async function runPyinstaller(...cmds) {
     });
   });
 }
-
-module.exports = {
-  runPyinstaller,
-};
