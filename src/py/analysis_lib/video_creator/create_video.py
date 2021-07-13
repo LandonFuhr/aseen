@@ -4,7 +4,7 @@ import time
 
 from analysis_lib.dlc_results_adapter import DlcResults
 from analysis_lib.video_creator.progress_updater import send_progress_update
-from analysis_lib.video_creator.colors import mouse_colors
+from analysis_lib.video_creator.colors import mouse_colors, outline_colormap
 
 
 def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path: str, output_video_path: str):
@@ -17,7 +17,7 @@ def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path
                 (i / len(dlc_results)) * 100), timeRemainingInMs=(len(dlc_results) - i) * 100)
 
         for individual_index, individual in enumerate(dlc_results[i].individuals):
-            for bodypart in individual.bodyparts:
+            for bodypart_index, bodypart in enumerate(individual.bodyparts):
                 x = bodypart.coords.x
                 y = bodypart.coords.y
                 if not pd.isnull(x) and not pd.isnull(y):
@@ -26,6 +26,11 @@ def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path
                     radius = get_dot_radius(frame.shape)
                     frame = cv2.circle(frame, pos, radius,
                                        color, -1, lineType=cv2.LINE_AA)
+                    outline_thickness = get_outline_thickness(frame.shape)
+                    outline_color = get_outline_color(
+                        bodypart_index/len(individual.bodyparts))
+                    frame = cv2.circle(frame, pos, radius, outline_color, outline_thickness,
+                                       lineType=cv2.LINE_AA)
 
         return frame
 
@@ -71,7 +76,23 @@ def setup_vid_in_and_out(input_video_path, output_video_path):
     return vid_in, vid_out
 
 
+DOT_PROPORTION = 0.015
+
+
 def get_dot_radius(frame_size) -> int:
     height, width, _ = frame_size
     size = min(height, width)
-    return int(size * 0.02)
+    return int(size * DOT_PROPORTION)
+
+
+def get_outline_thickness(frame_size) -> int:
+    height, width, _ = frame_size
+    size = min(height, width)
+    return int(size * DOT_PROPORTION * 0.3)
+
+
+def get_outline_color(proportional_position: int):
+    color_with_alpha = outline_colormap(proportional_position)
+    color = color_with_alpha[:3]
+    color = [int(channel * 255) for channel in color]
+    return color
