@@ -1,29 +1,106 @@
-Task: example-data
-date: Jun9
+Task: aseen_model_v1.1
+date: Jul9
 multianimalproject: true
-
-project_path:
-
 individuals:
-  - individual1
-  - individual2
-  - individual3
+  - Mouse_1
+  - Mouse_2
+  - Mouse_3
+  - Mouse_4
+  - Mouse_5
 uniquebodyparts: []
 multianimalbodyparts:
-  - bodypart1
-  - bodypart2
-  - bodypart3
+  - nose
+  - ear_l
+  - ear_r
+  - mid_1
+  - mid_2
+  - mid_3
+  - mid_4
+  - tail_1_base
+  - tail_2
+  - tail_3
+  - tail_4_end
+  - forelimb_l
+  - forelimb_r
+  - hindlimb_l
+  - hindlimb_r
 skeleton:
-  - - bodypart1
-    - bodypart2
-  - - bodypart1
-    - bodypart3
-  - - bodypart2
-    - bodypart3
+  - - ear_l
+    - mid_1
+  - - tail_2
+    - hindlimb_l
+  - - mid_3
+    - mid_4
+  - - mid_3
+    - hindlimb_l
+  - - mid_1
+    - forelimb_l
+  - - tail_2
+    - tail_3
+  - - ear_r
+    - forelimb_r
+  - - nose
+    - mid_1
+  - - ear_l
+    - forelimb_l
+  - - mid_1
+    - hindlimb_r
+  - - mid_4
+    - hindlimb_r
+  - - ear_l
+    - ear_r
+  - - tail_2
+    - hindlimb_r
+  - - mid_4
+    - tail_1_base
+  - - mid_2
+    - hindlimb_l
+  - - mid_1
+    - mid_2
+  - - forelimb_l
+    - hindlimb_l
+  - - tail_1_base
+    - hindlimb_r
+  - - tail_3
+    - hindlimb_r
+  - - forelimb_r
+    - hindlimb_r
+  - - mid_1
+    - hindlimb_l
+  - - mid_2
+    - mid_3
+  - - tail_4_end
+    - hindlimb_l
+  - - mid_2
+    - hindlimb_r
+  - - tail_3
+    - tail_4_end
+  - - ear_r
+    - mid_1
+  - - mid_2
+    - forelimb_l
+  - - nose
+    - ear_l
+  - - tail_3
+    - hindlimb_l
+  - - mid_1
+    - forelimb_r
+  - - tail_1_base
+    - hindlimb_l
+  - - mid_3
+    - hindlimb_r
+  - - tail_4_end
+    - hindlimb_r
+  - - mid_4
+    - hindlimb_l
+  - - tail_1_base
+    - tail_2
+  - - nose
+    - ear_r
 bodyparts: MULTI!
-
 TrainingFraction:
   - 0.95
 iteration: 0
 snapshotindex: -1
 cropping: false
+project_path: null

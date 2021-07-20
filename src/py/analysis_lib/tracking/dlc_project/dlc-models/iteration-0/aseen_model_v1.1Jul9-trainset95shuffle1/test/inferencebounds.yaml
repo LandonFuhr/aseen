@@ -1,0 +1,180 @@
+'1_3':
+  intra_max: '6.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'8_13':
+  intra_max: '20.0'
+  intra_min: '2.0'
+  inter_max: nan
+  inter_min: nan
+'5_6':
+  intra_max: '6.0'
+  intra_min: '0.0'
+  inter_max: nan
+  inter_min: nan
+'5_13':
+  intra_max: '10.0'
+  intra_min: '0.0'
+  inter_max: nan
+  inter_min: nan
+'3_11':
+  intra_max: '8.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'8_9':
+  intra_max: '9.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'2_12':
+  intra_max: '11.0'
+  intra_min: '0.0'
+  inter_max: nan
+  inter_min: nan
+'0_3':
+  intra_max: '15.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'1_11':
+  intra_max: '10.0'
+  intra_min: '0.0'
+  inter_max: nan
+  inter_min: nan
+'3_14':
+  intra_max: '19.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'6_14':
+  intra_max: '8.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'1_2':
+  intra_max: '8.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'8_14':
+  intra_max: '18.0'
+  intra_min: '2.0'
+  inter_max: nan
+  inter_min: nan
+'6_7':
+  intra_max: '7.0'
+  intra_min: '0.0'
+  inter_max: nan
+  inter_min: nan
+'4_13':
+  intra_max: '14.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'3_4':
+  intra_max: '5.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'11_13':
+  intra_max: '18.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'7_14':
+  intra_max: '11.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'9_14':
+  intra_max: '24.0'
+  intra_min: '3.0'
+  inter_max: nan
+  inter_min: nan
+'12_14':
+  intra_max: '17.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'3_13':
+  intra_max: '17.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'4_5':
+  intra_max: '6.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'10_13':
+  intra_max: '32.0'
+  intra_min: '4.0'
+  inter_max: nan
+  inter_min: nan
+'4_14':
+  intra_max: '16.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'9_10':
+  intra_max: '32.0'
+  intra_min: '2.0'
+  inter_max: nan
+  inter_min: nan
+'2_3':
+  intra_max: '5.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'4_11':
+  intra_max: '11.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'0_1':
+  intra_max: '10.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'9_13':
+  intra_max: '28.0'
+  intra_min: '3.0'
+  inter_max: nan
+  inter_min: nan
+'3_12':
+  intra_max: '8.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'7_13':
+  intra_max: '13.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'5_14':
+  intra_max: '11.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'10_14':
+  intra_max: '31.0'
+  intra_min: '3.0'
+  inter_max: nan
+  inter_min: nan
+'6_13':
+  intra_max: '9.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'7_8':
+  intra_max: '9.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
+'0_2':
+  intra_max: '11.0'
+  intra_min: '1.0'
+  inter_max: nan
+  inter_min: nan
