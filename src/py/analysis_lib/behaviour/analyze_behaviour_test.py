@@ -106,3 +106,50 @@ def test_it_counts_frames_partly_inside_areas():
 
 def test_it_counts_interaction_frames():
     pass
+
+
+def test_it_tracks_total_distance_using_center():
+    dlc_results = DlcResults(
+        get_labels(['Mouse 1'], ['ear_left', 'ear_right']),
+        np.array([
+            [0, 0, 1.0] + [0, 0, 1.0],
+            [0, 0, 1.0] + [2, 2, 1.0],  # sqrt(2) NE
+            [2, 2, 1.0] + [2, 2, 1.0],  # sqrt(2) NE
+            [12, 2, 1.0] + [8, 2, 1.0],  # 8 N
+            [-5, -18, 1.0] + [-5, -18, 1.0],  # 25 SW
+        ], dtype=float))
+    arena_setup = ArenaSetup(
+        areas=[Region(_id=None,
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=1, y=1),
+                          width=3, height=3, rotation=0), color_palette=None)],
+        interaction_zones=[])
+
+    behaviour_results = simple_behavioural_assay_algorithm(
+        arena_setup=arena_setup, dlc_results=dlc_results)
+
+    assert behaviour_results[0].stats_overall.total_distance_travelled_in_pixels == 35.82842712474619
+
+
+def test_it_tracks_distance_by_frame():
+    dlc_results = DlcResults(
+        get_labels(['Mouse 1'], ['ear_left', 'ear_right']),
+        np.array([
+            [0, 0, 1.0] + [0, 0, 1.0],
+            [0, 0, 1.0] + [2, 2, 1.0],  # sqrt(2) NE
+            [2, 2, 1.0] + [2, 2, 1.0],  # sqrt(2) NE
+            [12, 2, 1.0] + [8, 2, 1.0],  # 8 N
+            [-5, -18, 1.0] + [-5, -18, 1.0],  # 25 SW
+        ], dtype=float))
+    arena_setup = ArenaSetup(
+        areas=[Region(_id=None,
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=1, y=1),
+                          width=3, height=3, rotation=0), color_palette=None)],
+        interaction_zones=[])
+
+    behaviour_results = simple_behavioural_assay_algorithm(
+        arena_setup=arena_setup, dlc_results=dlc_results)
+
+    assert behaviour_results[0].source_data.distance_travelled_between_each_frame_in_pixels == [
+        1.4142135623730951, 1.4142135623730951, 8.0, 25.0]

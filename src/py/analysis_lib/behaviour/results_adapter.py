@@ -43,8 +43,8 @@ class InputPaths:
 class AnimalResults:
     animal_id: str
     stats_per_region: List[Union[RegionStatsByTime, RegionStatsByFrame]]
-    stats_overall: RegionOverallStats
-    source_data: RegionSourceData
+    stats_overall: AnimalOverallStats
+    source_data: AnimalSourceData
 
     def to_dict(self):
         return {
@@ -56,7 +56,7 @@ class AnimalResults:
 
 
 @dataclass
-class RegionSourceData:
+class AnimalSourceData:
     distance_travelled_between_each_frame_in_pixels: List[float]
 
     def to_dict(self):
@@ -66,7 +66,7 @@ class RegionSourceData:
 
 
 @dataclass
-class RegionOverallStats:
+class AnimalOverallStats:
     total_distance_travelled_in_pixels: float
     average_speed_in_pixels_per_second: float
     fraction_of_frames_with_animal_detected: float

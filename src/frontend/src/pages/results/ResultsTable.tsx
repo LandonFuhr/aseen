@@ -16,7 +16,7 @@ import {
 } from "@material-ui/icons";
 import {
   BehaviourResultsData,
-  RegionOverallStats,
+  AnimalOverallStats,
   RegionStats,
 } from "../../shared/ipc/BehaviourResults";
 import "./ResultsTable.css";
@@ -114,7 +114,7 @@ function isLowTrackingAccuracy({
 
 interface OverallStatsProps {
   animalId: string;
-  statsOverall: RegionOverallStats;
+  statsOverall: AnimalOverallStats;
 }
 
 const OverallStatCard = ({

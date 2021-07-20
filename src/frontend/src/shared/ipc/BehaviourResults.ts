@@ -14,17 +14,17 @@ interface BehaviourResultsMetadata {
 export interface BehaviourResultsData {
   animalId: string;
   statsPerRegion: RegionStats[];
-  statsOverall: RegionOverallStats;
-  sourceData: RegionSourceData;
+  statsOverall: AnimalOverallStats;
+  sourceData: AnimalSourceData;
 }
 
-export interface RegionOverallStats {
+export interface AnimalOverallStats {
   totalDistanceTravelledInPixels: number;
   averageSpeedInPixelsPerSecond: number;
   fractionOfFramesWithAnimalDetected: number;
 }
 
-export interface RegionSourceData {
+export interface AnimalSourceData {
   distanceTravelledBetweenEachFrameInPixels: number[];
 }
 
