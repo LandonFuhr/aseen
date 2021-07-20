@@ -1,6 +1,5 @@
-const fs = require("fs-extra");
 const path = require("path");
-const { tracking } = require("./builder/paths");
+const fse = require("fs-extra");
 
 module.exports = {
   packagerConfig: {
@@ -25,17 +24,24 @@ module.exports = {
     ],
     afterExtract: [
       (extractPath, electronVersion, platform, arch, done) => {
-        const dlcPath = path.join(tracking.distPath, tracking.name);
+        const dlcPath = path.join(
+          __dirname,
+          "src",
+          "py",
+          "analysis_lib",
+          "tracking",
+          "dlc_project"
+        );
         const outPath = path.join(
           extractPath,
           "resources",
           "app",
           "dist",
           "analysis_modules",
-          tracking.name
+          "dlc_project"
         );
         console.log(`\nCopying\n\tFrom: ${dlcPath}\n\tTo: ${outPath}`);
-        fs.copySync(dlcPath, outPath);
+        fse.copySync(dlcPath, outPath);
         done();
       },
     ],
