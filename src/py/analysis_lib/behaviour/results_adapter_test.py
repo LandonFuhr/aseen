@@ -1,4 +1,4 @@
-from analysis_lib.behaviour.results_adapter import InputPaths, AnimalOverallStats, AnimalSourceData, RegionStatsByTime, ResultsMetadata, BehaviourResults, AnimalResults
+from analysis_lib.behaviour.results_adapter import AnimalOverallStatsByTime, InputPaths, AnimalSourceData, RegionStatsByTime, ResultsMetadata, BehaviourResults, AnimalResults
 
 
 def test_it_converts_results_to_dict():
@@ -16,7 +16,7 @@ def test_it_converts_results_to_dict():
                                       secs_partly_inside=195.2, secs_of_interaction=22.4, n_entries=14),
                     RegionStatsByTime(region_id="Cup 1", secs_fully_inside=15.3,
                                       secs_partly_inside=195.2, secs_of_interaction=22.4, n_entries=30)],
-                stats_overall=AnimalOverallStats(
+                stats_overall=AnimalOverallStatsByTime(
                     total_distance_travelled_in_pixels=1941.42, average_speed_in_pixels_per_second=10.6, fraction_of_frames_with_animal_detected=0.8413),
                 source_data=AnimalSourceData(distance_travelled_between_each_frame_in_pixels=[0.4, 14.1, 0.1, 0.5, 0.8, 0.9])),
             AnimalResults(
@@ -26,7 +26,7 @@ def test_it_converts_results_to_dict():
                                       secs_partly_inside=195.2, secs_of_interaction=22.4, n_entries=14),
                     RegionStatsByTime(region_id="Cup 1", secs_fully_inside=15.3,
                                       secs_partly_inside=195.2, secs_of_interaction=22.4, n_entries=30)],
-                stats_overall=AnimalOverallStats(
+                stats_overall=AnimalOverallStatsByTime(
                     total_distance_travelled_in_pixels=1941.42, average_speed_in_pixels_per_second=10.6, fraction_of_frames_with_animal_detected=0.8413),
                 source_data=AnimalSourceData(distance_travelled_between_each_frame_in_pixels=[0.4, 14.1, 0.1, 0.5, 0.8, 0.9]))
         ])

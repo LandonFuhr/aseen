@@ -8,6 +8,13 @@ def convert_results_to_seconds_inplace(results: List[AnimalResults], framerate: 
             frame_results.stats_per_region[i] = region_stats_frames_to_seconds(
                 region_stats, framerate)
 
+        frame_results.stats_overall.average_speed_in_pixels_per_second = speed_per_frame_to_per_seconds(
+            frame_results.stats_overall.average_speed_in_pixels_per_frame, framerate)
+
+
+def speed_per_frame_to_per_seconds(speed: float, framerate: float) -> float:
+    return speed * framerate
+
 
 def region_stats_frames_to_seconds(region_stats_by_frame: RegionStatsByFrame, framerate: float) -> RegionStatsByTime:
     region_stats_by_time = RegionStatsByTime(

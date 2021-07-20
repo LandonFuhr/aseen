@@ -5,7 +5,7 @@ import numpy as np
 
 from analysis_lib.dlc_results_adapter import DlcResults, Individual
 from analysis_lib.behaviour.arena_setup_adapter import ArenaSetup, CircleGeometry, Point, RectangleGeometry, Region
-from analysis_lib.behaviour.results_adapter import AnimalResults, AnimalSourceData, AnimalOverallStats, RegionStatsByFrame
+from analysis_lib.behaviour.results_adapter import AnimalResults, AnimalSourceData, AnimalOverallStatsByFrame, RegionStatsByFrame
 from analysis_lib.behaviour.polygons import polygon_from_shape
 from analysis_lib.behaviour.temporal_converter import convert_results_to_seconds_inplace
 
@@ -55,8 +55,11 @@ def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: Dlc
     for individual_name, individual_distances_between_frames in distances_between_frames.items():
         individual_results = get_individual_results(individual_name, results)
         individual_results.source_data.distance_travelled_between_each_frame_in_pixels = individual_distances_between_frames
-        individual_results.stats_overall.total_distance_travelled_in_pixels = np.sum(
+        total_distance = np.sum(
             individual_distances_between_frames)
+        individual_results.stats_overall.total_distance_travelled_in_pixels = total_distance
+        individual_results.stats_overall.average_speed_in_pixels_per_frame = total_distance / \
+            len(dlc_results)
 
     return results
 
@@ -138,10 +141,10 @@ def initialize_region_stats(region_id: str) -> RegionStatsByFrame:
         n_entries=0)
 
 
-def initialize_overall_stats() -> AnimalOverallStats:
-    return AnimalOverallStats(
+def initialize_overall_stats() -> AnimalOverallStatsByFrame:
+    return AnimalOverallStatsByFrame(
         total_distance_travelled_in_pixels=0,
-        average_speed_in_pixels_per_second=0,
+        average_speed_in_pixels_per_frame=0,
         fraction_of_frames_with_animal_detected=0)
 
 
