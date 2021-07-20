@@ -3,7 +3,7 @@ from shapely import geometry
 
 from analysis_lib.dlc_results_adapter import DlcResults, Individual
 from analysis_lib.behaviour.arena_setup_adapter import ArenaSetup, CircleGeometry, RectangleGeometry, Region
-from analysis_lib.behaviour.results_adapter import AnimalResults, RegionStatsByFrame
+from analysis_lib.behaviour.results_adapter import AnimalResults, RegionOverallStats, RegionSourceData, RegionStatsByFrame
 from analysis_lib.behaviour.polygons import polygon_from_shape
 from analysis_lib.behaviour.temporal_converter import convert_results_to_seconds_inplace
 
@@ -84,7 +84,11 @@ def initialize_results(arena_setup: ArenaSetup, individuals: List[str]) -> List[
 def initialize_animal_results(animal_id: str, regions: List[Region]) -> AnimalResults:
     stats_per_region = [initialize_region_stats(
         region._id) for region in regions]
-    return AnimalResults(animal_id=animal_id, stats_per_region=stats_per_region)
+    return AnimalResults(
+        animal_id=animal_id,
+        stats_per_region=stats_per_region,
+        stats_overall=initialize_overall_stats(),
+        source_data=initialize_source_data())
 
 
 def initialize_region_stats(region_id: str) -> RegionStatsByFrame:
@@ -94,3 +98,14 @@ def initialize_region_stats(region_id: str) -> RegionStatsByFrame:
         frames_partly_inside=0,
         frames_of_interaction=0,
         n_entries=0)
+
+
+def initialize_overall_stats() -> RegionOverallStats:
+    return RegionOverallStats(
+        total_distance_travelled_in_pixels=0,
+        average_speed_in_pixels_per_second=0,
+        fraction_of_frames_with_animal_detected=0)
+
+
+def initialize_source_data() -> RegionSourceData:
+    return RegionSourceData(distance_travelled_between_each_frame_in_pixels=[])

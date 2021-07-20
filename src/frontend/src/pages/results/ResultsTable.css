@@ -4,3 +4,9 @@
   height: fit-content;
   border-radius: 4px;
 }
+
+.warning-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

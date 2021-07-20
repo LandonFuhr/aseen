@@ -29,6 +29,21 @@ Default.args = {
         nEntries: 30,
       },
     ],
+    statsOverall: {
+      totalDistanceTravelledInPixels: 1941.42,
+      averageSpeedInPixelsPerSecond: 10.6,
+      fractionOfFramesWithAnimalDetected: 0.8413,
+    },
+    sourceData: {
+      distanceTravelledBetweenEachFrameInPixels: [
+        0.4,
+        14.1,
+        0.1,
+        0.5,
+        0.8,
+        0.9,
+      ],
+    },
   },
   backgroundColor: mouseColors[0]?.translucent,
   dotColor: mouseColors[0]?.opaque,
