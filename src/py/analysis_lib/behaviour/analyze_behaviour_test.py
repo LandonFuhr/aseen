@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from analysis_lib.dlc_results_adapter import DlcResults, get_labels
 from analysis_lib.behaviour.analyze_behaviour import get_region_stats, simple_behavioural_assay_algorithm
@@ -104,6 +105,7 @@ def test_it_counts_frames_partly_inside_areas():
         'Mouse 1', '2', results).frames_partly_inside == 4
 
 
+@pytest.mark.todo
 def test_it_counts_interaction_frames():
     pass
 
