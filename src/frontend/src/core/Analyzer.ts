@@ -55,7 +55,7 @@ async function runAnalysisStep<T>({
   channel: string;
   onProgressUpdate: ProgressUpdateListener;
 }): Promise<void> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     ipcRenderer.send(channel, args);
     ipcRenderer.on(channel, (_event, args) => {
       switch (args.type) {
@@ -63,7 +63,8 @@ async function runAnalysisStep<T>({
           onProgressUpdate(args.data);
           break;
         case "error_message":
-          throw new Error(args.data);
+          reject(args.data.error);
+          break;
         case "success_message":
           resolve();
       }

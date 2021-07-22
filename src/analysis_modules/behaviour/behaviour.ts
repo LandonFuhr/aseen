@@ -7,7 +7,7 @@ import { BEHAVIOUR_CHANNEL } from "../../frontend/src/shared/ipc";
 import { BehaviourArgs } from "../../frontend/src/shared/ipc/analysis";
 
 export async function runBehaviourAnalyzer(args: BehaviourArgs): Promise<void> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     ipcRenderer.send(BEHAVIOUR_CHANNEL, {
       type: "progress_update",
       data: {
@@ -28,9 +28,14 @@ export async function runBehaviourAnalyzer(args: BehaviourArgs): Promise<void> {
     child.on("exit", (code) => {
       log.info(`Behaviour analyzer child exited with code ${code}`);
       if (code !== 0) {
-        throw new Error(
-          `Behaviour analyzer child exited with non-zero code: ${code}`
-        );
+        ipcRenderer.send(BEHAVIOUR_CHANNEL, {
+          type: "error_message",
+          data: {
+            error: `Behaviour analyzer child exited with non-zero code: ${code}`,
+          },
+        });
+        reject();
+        return;
       }
       ipcRenderer.send(BEHAVIOUR_CHANNEL, {
         type: "progress_update",

@@ -1,4 +1,5 @@
 import { Grid, Container, Box } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import { Close, InfoOutlined } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import { OutlineButton } from "../../components/Buttons";
@@ -15,6 +16,7 @@ import { runAnalyzer } from "../../core/Analyzer";
 import { useCreateResultsPaths } from "./useCreateResultsPaths";
 import { useVideoMetadata } from "../../components/VideoMetadata/hooks";
 import { useSetResultsPaths } from "../../components/PersistentProviders/ResultsPaths";
+import { ErrorToast } from "../../components/Toast/ErrorToast";
 
 const Analyzing = () => {
   const vidPathState = useVideoPathState();
@@ -26,6 +28,8 @@ const Analyzing = () => {
   const metadata = useVideoMetadata(vidPathState.path);
   const resultsPaths = useCreateResultsPaths({ arenaSetupPath });
   const setResultsPaths = useSetResultsPaths();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorToastIsOpen, setErrorToastIsOpen] = useState(false);
 
   useEffect(() => {
     const videoPath = vidPathState.path;
@@ -46,11 +50,17 @@ const Analyzing = () => {
         if (cancelled) return;
         setProgressUpdate(progressUpdate);
       },
-    }).then(() => {
-      if (cancelled) return;
-      setResultsPaths(resultsPaths);
-      router.setPage(Page.results);
-    });
+    })
+      .then(() => {
+        if (cancelled) return;
+        setResultsPaths(resultsPaths);
+        router.setPage(Page.results);
+      })
+      .catch((e) => {
+        console.error(e);
+        setErrorMessage("An error occured while analyzing the video");
+        setErrorToastIsOpen(true);
+      });
     return () => {
       cancelled = true;
     };
@@ -98,6 +108,16 @@ const Analyzing = () => {
           </Grid>
         </Box>
       </Container>
+      <ErrorToast
+        isOpen={errorToastIsOpen}
+        setIsOpen={setErrorToastIsOpen}
+        action={
+          <Button color="inherit" size="small" onClick={handleCancel}>
+            BACK HOME
+          </Button>
+        }
+        errorMessage={errorMessage}
+      />
     </>
   );
 };

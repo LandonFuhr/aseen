@@ -8,7 +8,7 @@ import { TRACKING_CHANNEL } from "../../frontend/src/shared/ipc";
 import { TrackingArgs } from "../../frontend/src/shared/ipc/analysis";
 
 export async function runTracker(args: TrackingArgs): Promise<void> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     ipcRenderer.send(TRACKING_CHANNEL, {
       type: "progress_update",
       data: {
@@ -42,7 +42,14 @@ export async function runTracker(args: TrackingArgs): Promise<void> {
     child.on("exit", (code) => {
       log.info("Tracker exited with code", code);
       if (code !== 0) {
-        throw new Error(`Tracking child exited with non-zero code: ${code}`);
+        ipcRenderer.send(TRACKING_CHANNEL, {
+          type: "error_message",
+          data: {
+            error: `Tracking child exited with non-zero code: ${code}`,
+          },
+        });
+        reject();
+        return;
       }
       ipcRenderer.send(TRACKING_CHANNEL, {
         type: "progress_update",

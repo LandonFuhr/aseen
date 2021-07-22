@@ -7,7 +7,7 @@ import { CREATE_VIDEO_CHANNEL } from "../../frontend/src/shared/ipc";
 import { VideoCreatorArgs } from "../../frontend/src/shared/ipc/analysis";
 
 export async function runVideoCreator(args: VideoCreatorArgs): Promise<void> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     ipcRenderer.send(CREATE_VIDEO_CHANNEL, {
       type: "progress_update",
       data: {
@@ -43,9 +43,14 @@ export async function runVideoCreator(args: VideoCreatorArgs): Promise<void> {
     child.on("exit", (code) => {
       log.info("Video processor child exited with code", code);
       if (code !== 0) {
-        throw new Error(
-          `Video processor child exited with non-zero code: ${code}`
-        );
+        ipcRenderer.send(CREATE_VIDEO_CHANNEL, {
+          type: "error_message",
+          data: {
+            error: `Video processor exited with non-zero code: ${code}`,
+          },
+        });
+        reject();
+        return;
       }
       ipcRenderer.send(CREATE_VIDEO_CHANNEL, {
         type: "progress_update",
