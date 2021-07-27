@@ -22,20 +22,12 @@ def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: Dlc
     results = initialize_results(arena_setup, dlc_results.individuals)
     individual_was_in_region_last_frame = create_entry_tracker(
         individual_names=[individual for individual in dlc_results.individuals], region_ids=[region._id for region in regions])
-    center_positions_prev_frame = {}
+    center_positions_prev_non_none_frame = {}
     distances_between_frames = {}
     for frame_index, frame_results in enumerate(dlc_results):
         for individual in frame_results.individuals:
-            curr_center = get_center(individual)
-            if frame_index == 0:
-                distances_between_frames[individual.name] = []
-            else:
-                prev_center = center_positions_prev_frame[individual.name]
-                distance_moved = distance_between_points(
-                    prev_center, curr_center)
-                distances_between_frames[individual.name].append(
-                    distance_moved)
-            center_positions_prev_frame[individual.name] = curr_center
+            update_individual_distance_travelled(
+                center_positions_prev_non_none_frame, distances_between_frames, frame_index, individual)
 
             for region in regions:
                 if individual_is_fully_inside_shape(individual, region.geometry):
@@ -55,8 +47,7 @@ def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: Dlc
     for individual_name, individual_distances_between_frames in distances_between_frames.items():
         individual_results = get_individual_results(individual_name, results)
         individual_results.source_data.distance_travelled_between_each_frame_in_pixels = individual_distances_between_frames
-        total_distance = np.sum(
-            individual_distances_between_frames)
+        total_distance = sum(filter(None, individual_distances_between_frames))
         individual_results.stats_overall.total_distance_travelled_in_pixels = total_distance
         individual_results.stats_overall.average_speed_in_pixels_per_frame = total_distance / \
             len(dlc_results)
@@ -64,14 +55,44 @@ def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: Dlc
     return results
 
 
-def distance_between_points(a: Point, b: Point) -> float:
-    return distance.euclidean([a.x, a.y], [b.x, b.y])
+def update_individual_distance_travelled(center_positions_prev_non_none_frame, distances_between_frames, frame_index, individual):
+    curr_center = get_center(individual)
+    prev_center = center_positions_prev_non_none_frame.get(
+        individual.name, None)
+    distance_moved = get_distance_moved_between_frames(
+        prev_center, curr_center)
+    if frame_index == 0:
+        distances_between_frames[individual.name] = []
+    else:
+        distances_between_frames[individual.name].append(
+            distance_moved)
+    if curr_center is not None:
+        center_positions_prev_non_none_frame[individual.name] = curr_center
 
 
-def get_center(individual: Individual) -> Point:
+def get_distance_moved_between_frames(prev_center: Union[Point, None], curr_center: Union[Point, None]) -> Union[float, None]:
+    if curr_center is None:
+        return None
+    if prev_center is None:
+        return 0
+    return distance_between_points(
+        prev_center, curr_center)
+
+
+def distance_between_points(a: Point, b: Point) -> Union[float, None]:
+    try:
+        return distance.euclidean([a.x, a.y], [b.x, b.y])
+    except ValueError:
+        return None
+
+
+def get_center(individual: Individual) -> Union[Point, None]:
     points = [(bp.coords.x, bp.coords.y) for bp in individual.bodyparts]
-    center = np.mean(points, axis=0)
-    return Point(x=center[0], y=center[1])
+    center_coords = np.mean(points, axis=0)
+    center = Point(x=center_coords[0], y=center_coords[1])
+    if not np.isfinite(center.x) or not np.isfinite(center.y):
+        return None
+    return center
 
 
 def create_entry_tracker(individual_names: List[str], region_ids: List[str]) -> dict:
