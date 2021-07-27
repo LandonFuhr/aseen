@@ -43,7 +43,7 @@ function getPercentComplete(dlcOutput: string): number {
   return Number(percentCompleteMatch[0]?.split("%")[0]);
 }
 
-interface DlcProgressUpdate {
+export interface DlcProgressUpdate {
   percentComplete: number;
   timeRemainingInMs: number | null;
 }

@@ -12,7 +12,7 @@ import { Page } from "../../core/types";
 import { VideoCard } from "./VideoCard";
 import { useArenaSetupPath } from "../../components/PersistentProviders/ArenaSetupPath";
 import { ProgressUpdate } from "../../shared/ipc";
-import { runAnalyzer } from "../../core/Analyzer";
+import { runAnalyzer, stopAllAnalyzers } from "../../core/Analyzer";
 import { useCreateResultsPaths } from "./useCreateResultsPaths";
 import { useVideoMetadata } from "../../components/VideoMetadata/hooks";
 import { useSetResultsPaths } from "../../components/PersistentProviders/ResultsPaths";
@@ -40,6 +40,12 @@ const Analyzing = () => {
       metadata === null
     )
       return;
+    function handleError(e: any) {
+      console.error(e);
+      setErrorMessage(`An error occured while analyzing the video: ${e}`);
+      setErrorToastIsOpen(true);
+    }
+    setErrorToastIsOpen(false);
     let cancelled = false;
     runAnalyzer({
       videoPath,
@@ -51,18 +57,27 @@ const Analyzing = () => {
         setProgressUpdate(progressUpdate);
       },
     })
-      .then(() => {
+      .then((exitInfo) => {
         if (cancelled) return;
-        setResultsPaths(resultsPaths);
-        router.setPage(Page.results);
+        switch (exitInfo.type) {
+          case "SUCCESS":
+            setResultsPaths(resultsPaths);
+            router.setPage(Page.results);
+            break;
+          case "ERROR":
+            throw new Error(exitInfo.data.error);
+          case "KILLED":
+            console.log("Analyzer killed");
+            break;
+        }
       })
       .catch((e) => {
-        console.error(e);
-        setErrorMessage("An error occured while analyzing the video");
-        setErrorToastIsOpen(true);
+        if (cancelled) return;
+        handleError(e);
       });
     return () => {
       cancelled = true;
+      stopAllAnalyzers();
     };
   }, [
     router,
