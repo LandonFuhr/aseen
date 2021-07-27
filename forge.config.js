@@ -24,13 +24,11 @@ module.exports = {
     ],
     afterExtract: [
       (extractPath, electronVersion, platform, arch, done) => {
-        const dlcPath = path.join(
+        const srcPath = path.join(
           __dirname,
-          "src",
-          "py",
-          "analysis_lib",
-          "tracking",
-          "dlc_project"
+          "dist",
+          "analysis_modules",
+          "tracking"
         );
         const outPath = path.join(
           extractPath,
@@ -38,10 +36,10 @@ module.exports = {
           "app",
           "dist",
           "analysis_modules",
-          "dlc_project"
+          "tracking"
         );
-        console.log(`\nCopying\n\tFrom: ${dlcPath}\n\tTo: ${outPath}`);
-        fse.copySync(dlcPath, outPath);
+        console.log(`\nCopying\n\tFrom: ${srcPath}\n\tTo: ${outPath}`);
+        fse.copySync(srcPath, outPath);
         done();
       },
     ],
