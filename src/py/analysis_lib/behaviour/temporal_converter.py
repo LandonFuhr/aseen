@@ -1,5 +1,5 @@
 from typing import List
-from analysis_lib.behaviour.results_adapter import AnimalResults, RegionStatsByFrame, RegionStatsByTime
+from analysis_lib.behaviour.results_adapter import AnimalOverallStatsByTime, AnimalResults, RegionStatsByFrame, RegionStatsByTime
 
 
 def convert_results_to_seconds_inplace(results: List[AnimalResults], framerate: float):
@@ -8,8 +8,12 @@ def convert_results_to_seconds_inplace(results: List[AnimalResults], framerate: 
             frame_results.stats_per_region[i] = region_stats_frames_to_seconds(
                 region_stats, framerate)
 
-        frame_results.stats_overall.average_speed_in_pixels_per_second = speed_per_frame_to_per_seconds(
-            frame_results.stats_overall.average_speed_in_pixels_per_frame, framerate)
+        stats = frame_results.stats_overall
+        frame_results.stats_overall = AnimalOverallStatsByTime(
+            total_distance_travelled_in_pixels=stats.total_distance_travelled_in_pixels,
+            average_speed_in_pixels_per_second=speed_per_frame_to_per_seconds(
+                stats.average_speed_in_pixels_per_frame, framerate),
+            fraction_of_frames_with_animal_detected=stats.fraction_of_frames_with_animal_detected)
 
 
 def speed_per_frame_to_per_seconds(speed: float, framerate: float) -> float:
