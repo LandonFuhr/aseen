@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from analysis_lib.dlc_results_adapter import DlcResults, get_labels
-from analysis_lib.behaviour.analyze_behaviour import get_region_stats, simple_behavioural_assay_algorithm
+from analysis_lib.behaviour.analyze_behaviour import get_region_stats, basic_behavioural_assay_algorithm
 from analysis_lib.behaviour.arena_setup_adapter import ArenaSetup, Point, RectangleGeometry, Region
 
 
@@ -30,7 +30,7 @@ def test_it_counts_entries():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    behaviour_results = simple_behavioural_assay_algorithm(
+    behaviour_results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].stats_per_region[0].n_entries == 3
@@ -60,7 +60,7 @@ def test_it_counts_frames_fully_inside_areas():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    results = simple_behavioural_assay_algorithm(
+    results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert get_region_stats(
@@ -96,7 +96,7 @@ def test_it_counts_frames_partly_inside_areas():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    results = simple_behavioural_assay_algorithm(
+    results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert get_region_stats(
@@ -127,7 +127,7 @@ def test_it_tracks_total_distance_using_center():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    behaviour_results = simple_behavioural_assay_algorithm(
+    behaviour_results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].stats_overall.total_distance_travelled_in_pixels == 35.82842712474619
@@ -155,7 +155,7 @@ def test_it_tracks_total_distance_ignoring_nan_frames():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    behaviour_results = simple_behavioural_assay_algorithm(
+    behaviour_results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].stats_overall.total_distance_travelled_in_pixels == 35.82842712474619
@@ -178,7 +178,7 @@ def test_it_tracks_distance_by_frame():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    behaviour_results = simple_behavioural_assay_algorithm(
+    behaviour_results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].source_data.distance_travelled_between_each_frame_in_pixels == [
@@ -207,7 +207,7 @@ def test_it_tracks_distance_by_frame_with_nan_as_None():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    behaviour_results = simple_behavioural_assay_algorithm(
+    behaviour_results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].source_data.distance_travelled_between_each_frame_in_pixels == [
@@ -231,7 +231,7 @@ def test_it_tracks_average_speed():
                           width=3, height=3, rotation=0), color_palette=None)],
         interaction_zones=[])
 
-    behaviour_results = simple_behavioural_assay_algorithm(
+    behaviour_results = basic_behavioural_assay_algorithm(
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].stats_overall.average_speed_in_pixels_per_frame == 35.82842712474619 / 5

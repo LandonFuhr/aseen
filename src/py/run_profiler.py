@@ -2,7 +2,7 @@ import cProfile
 import pstats
 import numpy as np
 
-from analysis_lib.behaviour.analyze_behaviour import simple_behavioural_assay_algorithm
+from analysis_lib.behaviour.analyze_behaviour import basic_behavioural_assay_algorithm
 from analysis_lib.dlc_results_adapter import DlcResults, get_labels
 from analysis_lib.behaviour.arena_setup_adapter import ArenaSetup, Point, RectangleGeometry, Region
 

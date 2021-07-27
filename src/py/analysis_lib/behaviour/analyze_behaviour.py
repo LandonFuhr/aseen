@@ -11,13 +11,13 @@ from analysis_lib.behaviour.temporal_converter import convert_results_to_seconds
 
 
 def analyze_behaviour(arena_setup: ArenaSetup, dlc_results: DlcResults, framerate: float) -> List[AnimalResults]:
-    results = simple_behavioural_assay_algorithm(
+    results = basic_behavioural_assay_algorithm(
         arena_setup, dlc_results)
     convert_results_to_seconds_inplace(results, framerate)
     return results
 
 
-def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: DlcResults) -> List[AnimalResults]:
+def basic_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: DlcResults) -> List[AnimalResults]:
     regions = arena_setup.areas + arena_setup.interaction_zones
     results = initialize_results(arena_setup, dlc_results.individuals)
     individual_was_in_region_last_frame = create_entry_tracker(
@@ -30,29 +30,39 @@ def simple_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: Dlc
                 center_positions_prev_non_none_frame, distances_between_frames, frame_index, individual)
 
             for region in regions:
-                if individual_is_fully_inside_shape(individual, region.geometry):
-                    get_region_stats(individual.name, region._id,
-                                     results).frames_fully_inside += 1
-                    if not individual_was_in_region_last_frame[individual.name][region._id]:
-                        get_region_stats(individual.name, region._id,
-                                         results).n_entries += 1
-                    individual_was_in_region_last_frame[individual.name][region._id] = True
-                else:
-                    individual_was_in_region_last_frame[individual.name][region._id] = False
-
-                if individual_is_partly_inside_shape(individual, region.geometry):
-                    get_region_stats(individual.name, region._id,
-                                     results).frames_partly_inside += 1
+                update_region_stats(
+                    results, individual_was_in_region_last_frame, individual, region)
 
     for individual_name, individual_distances_between_frames in distances_between_frames.items():
-        individual_results = get_individual_results(individual_name, results)
-        individual_results.source_data.distance_travelled_between_each_frame_in_pixels = individual_distances_between_frames
-        total_distance = sum(filter(None, individual_distances_between_frames))
-        individual_results.stats_overall.total_distance_travelled_in_pixels = total_distance
-        individual_results.stats_overall.average_speed_in_pixels_per_frame = total_distance / \
-            len(dlc_results)
+        update_individual_overall_results(
+            dlc_results, results, individual_name, individual_distances_between_frames)
 
     return results
+
+
+def update_individual_overall_results(dlc_results, results, individual_name, individual_distances_between_frames):
+    individual_results = get_individual_results(individual_name, results)
+    individual_results.source_data.distance_travelled_between_each_frame_in_pixels = individual_distances_between_frames
+    total_distance = sum(filter(None, individual_distances_between_frames))
+    individual_results.stats_overall.total_distance_travelled_in_pixels = total_distance
+    individual_results.stats_overall.average_speed_in_pixels_per_frame = total_distance / \
+        len(dlc_results)
+
+
+def update_region_stats(results, individual_was_in_region_last_frame, individual, region):
+    if individual_is_fully_inside_shape(individual, region.geometry):
+        get_region_stats(individual.name, region._id,
+                         results).frames_fully_inside += 1
+        if not individual_was_in_region_last_frame[individual.name][region._id]:
+            get_region_stats(individual.name, region._id,
+                             results).n_entries += 1
+        individual_was_in_region_last_frame[individual.name][region._id] = True
+    else:
+        individual_was_in_region_last_frame[individual.name][region._id] = False
+
+    if individual_is_partly_inside_shape(individual, region.geometry):
+        get_region_stats(individual.name, region._id,
+                         results).frames_partly_inside += 1
 
 
 def update_individual_distance_travelled(center_positions_prev_non_none_frame, distances_between_frames, frame_index, individual):
