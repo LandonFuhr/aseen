@@ -1,4 +1,8 @@
-import { BEHAVIOUR_CHANNEL, TRACKING_CHANNEL } from "../../shared/ipc";
+import {
+  BEHAVIOUR_CHANNEL,
+  CREATE_VIDEO_CHANNEL,
+  TRACKING_CHANNEL,
+} from "../../shared/ipc";
 import {
   AnalysisIpcResponse,
   AnalysisIpcSignal,
@@ -39,5 +43,5 @@ export const ipcBehaviourController = createIpcController<BehaviourArgs>({
 });
 
 export const ipcVideoCreatorController = createIpcController<VideoCreatorArgs>({
-  channel: BEHAVIOUR_CHANNEL,
+  channel: CREATE_VIDEO_CHANNEL,
 });
