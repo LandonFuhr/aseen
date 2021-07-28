@@ -235,3 +235,49 @@ def test_it_tracks_average_speed():
         arena_setup=arena_setup, dlc_results=dlc_results)
 
     assert behaviour_results[0].stats_overall.average_speed_in_pixels_per_frame == 35.82842712474619 / 5
+
+
+def test_it_tracks_fraction_of_frames_fully_detected():
+    dlc_results = DlcResults(
+        get_labels(['Mouse 1'], ['ear_left', 'ear_right']),
+        np.array([
+            [np.nan, np.nan, np.nan] + [np.nan, np.nan, np.nan],  # not detected
+            [0, 0, 1.0] + [np.nan, np.nan, np.nan],  # partly detected
+            [2, 2, 1.0] + [2, 2, 1.0],  # fully detected
+            [np.nan, np.nan, np.nan] + [-5, -18, 1.0],  # partly detected
+            [12, 2, 1.0] + [8, 2, 1.0],  # fully detected
+        ], dtype=float))
+    arena_setup = ArenaSetup(
+        areas=[Region(_id=None,
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=1, y=1),
+                          width=3, height=3, rotation=0), color_palette=None)],
+        interaction_zones=[])
+
+    behaviour_results = basic_behavioural_assay_algorithm(
+        arena_setup=arena_setup, dlc_results=dlc_results)
+
+    assert behaviour_results[0].stats_overall.fraction_of_frames_with_animal_fully_detected == 0.4
+
+
+def test_it_tracks_fraction_of_frames_partly_detected():
+    dlc_results = DlcResults(
+        get_labels(['Mouse 1'], ['ear_left', 'ear_right']),
+        np.array([
+            [np.nan, np.nan, np.nan] + [np.nan, np.nan, np.nan],  # not detected
+            [0, 0, 1.0] + [np.nan, np.nan, np.nan],  # partly detected
+            [2, 2, 1.0] + [2, 2, 1.0],  # fully detected
+            [np.nan, np.nan, np.nan] + [-5, -18, 1.0],  # partly detected
+            [12, 2, 1.0] + [8, 2, 1.0],  # fully detected
+        ], dtype=float))
+    arena_setup = ArenaSetup(
+        areas=[Region(_id=None,
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=1, y=1),
+                          width=3, height=3, rotation=0), color_palette=None)],
+        interaction_zones=[])
+
+    behaviour_results = basic_behavioural_assay_algorithm(
+        arena_setup=arena_setup, dlc_results=dlc_results)
+
+    assert behaviour_results[0].stats_overall.fraction_of_frames_with_animal_partly_detected == 0.8

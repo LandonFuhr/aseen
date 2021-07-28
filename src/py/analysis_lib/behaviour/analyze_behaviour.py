@@ -3,7 +3,7 @@ from shapely import geometry
 from scipy.spatial import distance
 import numpy as np
 
-from analysis_lib.dlc_results_adapter import DlcResults, Individual
+from analysis_lib.dlc_results_adapter import Bodypart, DlcResults, Individual
 from analysis_lib.behaviour.arena_setup_adapter import ArenaSetup, CircleGeometry, Point, RectangleGeometry, Region
 from analysis_lib.behaviour.results_adapter import AnimalResults, AnimalSourceData, AnimalOverallStatsByFrame, RegionStatsByFrame
 from analysis_lib.behaviour.polygons import polygon_from_shape
@@ -22,12 +22,16 @@ def basic_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: DlcR
     results = initialize_results(arena_setup, dlc_results.individuals)
     individual_was_in_region_last_frame = create_entry_tracker(
         individual_names=[individual for individual in dlc_results.individuals], region_ids=[region._id for region in regions])
+    n_frames_partly_detected = {}
+    n_frames_fully_detected = {}
     center_positions_prev_non_none_frame = {}
     distances_between_frames = {}
     for frame_index, frame_results in enumerate(dlc_results):
         for individual in frame_results.individuals:
             update_individual_distance_travelled(
                 center_positions_prev_non_none_frame, distances_between_frames, frame_index, individual)
+            update_frame_detection_fractions(
+                n_frames_partly_detected, n_frames_fully_detected, individual)
 
             for region in regions:
                 update_region_stats(
@@ -37,7 +41,44 @@ def basic_behavioural_assay_algorithm(arena_setup: ArenaSetup, dlc_results: DlcR
         update_individual_overall_results(
             dlc_results, results, individual_name, individual_distances_between_frames)
 
+    n_frames_total = len(dlc_results)
+    for individual_name, n_frames_fully_detected_individual in n_frames_fully_detected.items():
+        get_individual_results(
+            individual_name, results).stats_overall.fraction_of_frames_with_animal_fully_detected = n_frames_fully_detected_individual / n_frames_total
+
+    for individual_name, n_frames_partly_detected_individual in n_frames_partly_detected.items():
+        get_individual_results(
+            individual_name, results).stats_overall.fraction_of_frames_with_animal_partly_detected = n_frames_partly_detected_individual / n_frames_total
+
     return results
+
+
+def update_frame_detection_fractions(n_frames_partly_detected: dict, n_frames_fully_detected: dict, individual: Individual):
+    if get_is_partly_detected(
+            individual):
+        n_frames_partly_detected[individual.name] = n_frames_partly_detected.get(
+            individual.name, 0) + 1
+    if get_is_fully_detected(individual):
+        n_frames_fully_detected[individual.name] = n_frames_fully_detected.get(
+            individual.name, 0) + 1
+
+
+def get_is_partly_detected(individual: Individual) -> bool:
+    for bp in individual.bodyparts:
+        if is_detected(bp):
+            return True
+    return False
+
+
+def get_is_fully_detected(individual: Individual) -> bool:
+    for bp in individual.bodyparts:
+        if not is_detected(bp):
+            return False
+    return True
+
+
+def is_detected(bp: Bodypart) -> bool:
+    return not (np.isnan(bp.coords.x) or np.isnan(bp.coords.y) or np.isnan(bp.coords.likelihood))
 
 
 def update_individual_overall_results(dlc_results, results, individual_name, individual_distances_between_frames):
