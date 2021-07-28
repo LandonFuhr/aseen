@@ -32,7 +32,8 @@ Default.args = {
     statsOverall: {
       totalDistanceTravelledInPixels: 1941.42,
       averageSpeedInPixelsPerSecond: 10.6,
-      fractionOfFramesWithAnimalDetected: 0.8413,
+      fractionOfFramesWithAnimalFullyDetected: 0.8413,
+      fractionOfFramesWithAnimalPartlyDetected: 1.0,
     },
     sourceData: {
       distanceTravelledBetweenEachFrameInPixels: [

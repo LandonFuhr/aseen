@@ -21,7 +21,8 @@ export interface BehaviourResultsData {
 export interface AnimalOverallStats {
   totalDistanceTravelledInPixels: number;
   averageSpeedInPixelsPerSecond: number;
-  fractionOfFramesWithAnimalDetected: number;
+  fractionOfFramesWithAnimalFullyDetected: number;
+  fractionOfFramesWithAnimalPartlyDetected: number;
 }
 
 export interface AnimalSourceData {

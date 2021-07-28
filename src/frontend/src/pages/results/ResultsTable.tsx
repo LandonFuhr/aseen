@@ -67,7 +67,7 @@ export const ResultsTable = ({
 
 const OverallStats = ({
   statsOverall: {
-    fractionOfFramesWithAnimalDetected,
+    fractionOfFramesWithAnimalFullyDetected,
     totalDistanceTravelledInPixels,
     averageSpeedInPixelsPerSecond,
   },
@@ -85,10 +85,12 @@ const OverallStats = ({
       icon={<SpeedRounded />}
     />,
     <OverallStatCard
-      title={`Frames Detecting ${animalId}`}
-      value={`${(fractionOfFramesWithAnimalDetected * 100).toFixed(1)} %`}
+      title={`Frames Detecting Entire ${animalId}`}
+      value={`${(fractionOfFramesWithAnimalFullyDetected * 100).toFixed(1)} %`}
       icon={<FindInPageOutlined />}
-      isWarning={isLowTrackingAccuracy({ fractionOfFramesWithAnimalDetected })}
+      isWarning={isLowTrackingAccuracy({
+        fractionOfFramesWithAnimalFullyDetected,
+      })}
     />,
   ];
   return (
@@ -105,11 +107,11 @@ const OverallStats = ({
 };
 
 function isLowTrackingAccuracy({
-  fractionOfFramesWithAnimalDetected,
+  fractionOfFramesWithAnimalFullyDetected,
 }: {
-  fractionOfFramesWithAnimalDetected: number;
+  fractionOfFramesWithAnimalFullyDetected: number;
 }) {
-  return fractionOfFramesWithAnimalDetected < 0.9;
+  return fractionOfFramesWithAnimalFullyDetected < 0.8;
 }
 
 interface OverallStatsProps {

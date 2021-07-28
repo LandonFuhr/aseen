@@ -17,7 +17,7 @@ def test_it_converts_results_to_dict():
                     RegionStatsByTime(region_id="Cup 1", secs_fully_inside=15.3,
                                       secs_partly_inside=195.2, secs_of_interaction=22.4, n_entries=30)],
                 stats_overall=AnimalOverallStatsByTime(
-                    total_distance_travelled_in_pixels=1941.42, average_speed_in_pixels_per_second=10.6, fraction_of_frames_with_animal_detected=0.8413),
+                    total_distance_travelled_in_pixels=1941.42, average_speed_in_pixels_per_second=10.6, fraction_of_frames_with_animal_fully_detected=0.8413, fraction_of_frames_with_animal_partly_detected=0.9871),
                 source_data=AnimalSourceData(distance_travelled_between_each_frame_in_pixels=[0.4, 14.1, 0.1, 0.5, 0.8, 0.9])),
             AnimalResults(
                 animal_id="Mouse 2",
@@ -27,7 +27,7 @@ def test_it_converts_results_to_dict():
                     RegionStatsByTime(region_id="Cup 1", secs_fully_inside=15.3,
                                       secs_partly_inside=195.2, secs_of_interaction=22.4, n_entries=30)],
                 stats_overall=AnimalOverallStatsByTime(
-                    total_distance_travelled_in_pixels=1941.42, average_speed_in_pixels_per_second=10.6, fraction_of_frames_with_animal_detected=0.8413),
+                    total_distance_travelled_in_pixels=1941.42, average_speed_in_pixels_per_second=10.6, fraction_of_frames_with_animal_fully_detected=0.8413, fraction_of_frames_with_animal_partly_detected=0.9871),
                 source_data=AnimalSourceData(distance_travelled_between_each_frame_in_pixels=[0.4, 14.1, 0.1, 0.5, 0.8, 0.9]))
         ])
     results_dict = results.to_dict()
@@ -64,7 +64,8 @@ expected_dict = {
             "statsOverall": {
                 "totalDistanceTravelledInPixels": 1941.42,
                 "averageSpeedInPixelsPerSecond": 10.6,
-                "fractionOfFramesWithAnimalDetected": 0.8413,
+                "fractionOfFramesWithAnimalFullyDetected": 0.8413,
+                "fractionOfFramesWithAnimalPartlyDetected": 0.9871
             },
             "sourceData": {
                 "distanceTravelledBetweenEachFrameInPixels": [
@@ -93,7 +94,8 @@ expected_dict = {
             "statsOverall": {
                 "totalDistanceTravelledInPixels": 1941.42,
                 "averageSpeedInPixelsPerSecond": 10.6,
-                "fractionOfFramesWithAnimalDetected": 0.8413,
+                "fractionOfFramesWithAnimalFullyDetected": 0.8413,
+                "fractionOfFramesWithAnimalPartlyDetected": 0.9871
             },
             "sourceData": {
                 "distanceTravelledBetweenEachFrameInPixels": [

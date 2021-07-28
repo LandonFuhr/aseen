@@ -13,7 +13,8 @@ def convert_results_to_seconds_inplace(results: List[AnimalResults], framerate: 
             total_distance_travelled_in_pixels=stats.total_distance_travelled_in_pixels,
             average_speed_in_pixels_per_second=speed_per_frame_to_per_seconds(
                 stats.average_speed_in_pixels_per_frame, framerate),
-            fraction_of_frames_with_animal_detected=stats.fraction_of_frames_with_animal_detected)
+            fraction_of_frames_with_animal_fully_detected=stats.fraction_of_frames_with_animal_fully_detected,
+            fraction_of_frames_with_animal_partly_detected=stats.fraction_of_frames_with_animal_partly_detected)
 
 
 def speed_per_frame_to_per_seconds(speed: float, framerate: float) -> float:

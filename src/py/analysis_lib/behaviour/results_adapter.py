@@ -69,20 +69,23 @@ class AnimalSourceData:
 class AnimalOverallStatsByFrame:
     total_distance_travelled_in_pixels: float
     average_speed_in_pixels_per_frame: float
-    fraction_of_frames_with_animal_detected: float
+    fraction_of_frames_with_animal_fully_detected: float
+    fraction_of_frames_with_animal_partly_detected: float
 
 
 @dataclass
 class AnimalOverallStatsByTime:
     total_distance_travelled_in_pixels: float
     average_speed_in_pixels_per_second: float
-    fraction_of_frames_with_animal_detected: float
+    fraction_of_frames_with_animal_fully_detected: float
+    fraction_of_frames_with_animal_partly_detected: float
 
     def to_dict(self):
         return {
             "totalDistanceTravelledInPixels": self.total_distance_travelled_in_pixels,
             "averageSpeedInPixelsPerSecond": self.average_speed_in_pixels_per_second,
-            "fractionOfFramesWithAnimalDetected": self.fraction_of_frames_with_animal_detected
+            "fractionOfFramesWithAnimalFullyDetected": self.fraction_of_frames_with_animal_fully_detected,
+            "fractionOfFramesWithAnimalPartlyDetected": self.fraction_of_frames_with_animal_partly_detected
         }
 
 

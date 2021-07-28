@@ -178,7 +178,8 @@ def initialize_overall_stats() -> AnimalOverallStatsByFrame:
     return AnimalOverallStatsByFrame(
         total_distance_travelled_in_pixels=0,
         average_speed_in_pixels_per_frame=0,
-        fraction_of_frames_with_animal_detected=0)
+        fraction_of_frames_with_animal_fully_detected=0,
+        fraction_of_frames_with_animal_partly_detected=0)
 
 
 def initialize_source_data() -> AnimalSourceData:
