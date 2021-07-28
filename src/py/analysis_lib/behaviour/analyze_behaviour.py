@@ -74,6 +74,8 @@ def update_individual_distance_travelled(center_positions_prev_non_none_frame, d
     if frame_index == 0:
         distances_between_frames[individual.name] = []
     else:
+        if distance_moved is not None:
+            distance_moved = float(distance_moved)
         distances_between_frames[individual.name].append(
             distance_moved)
     if curr_center is not None:
