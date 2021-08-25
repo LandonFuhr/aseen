@@ -18,7 +18,7 @@ export const Results = ({
       <Box p={4}>
         <Container maxWidth="lg">
           <Grid container spacing={4}>
-            <Grid item>
+            <Grid item xs={12}>
               <Grid container spacing={2}>
                 <Grid item>
                   <OutlineButton
@@ -36,7 +36,7 @@ export const Results = ({
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
               <Grid container spacing={4}>
                 {behaviourResults?.data.map((data, i) => (
                   <Grid key={i} item xs={12}>
