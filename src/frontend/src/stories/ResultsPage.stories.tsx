@@ -61,6 +61,13 @@ MissingMouse.args = {
   behaviourResults: behaviourResultsWithMissingMouse,
 };
 
+export const Empty = Template.bind({});
+Empty.args = {
+  onHomeClick,
+  handleOpenResultsFolder,
+  behaviourResults: createFakeBehaviourResults({ nAnimals: 0, nRegions: 0 }),
+};
+
 function onHomeClick() {
   console.log("Home");
 }
