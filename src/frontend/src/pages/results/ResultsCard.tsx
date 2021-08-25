@@ -144,7 +144,9 @@ const OverallStatCard = ({
         {isWarning && <WarningRounded color="error" className="warning-icon" />}
         {icon}
         <Typography variant="h6">{value}</Typography>
-        <Typography variant="caption">{title}</Typography>
+        <Typography variant="caption" align="center">
+          {title}
+        </Typography>
       </Box>
     </Paper>
   );
