@@ -93,7 +93,11 @@ const OverallStats = ({
       icon={<SpeedRounded />}
     />,
     <OverallStatCard
-      title={`Frames Detecting Entire ${animalId}`}
+      title={
+        <>
+          Frames Detecting All Parts of <em>{animalId}</em>
+        </>
+      }
       value={`${(fractionOfFramesWithAnimalFullyDetected * 100).toFixed(1)} %`}
       icon={<FindInPageOutlined />}
       isWarning={isLowTrackingAccuracy({
@@ -156,7 +160,7 @@ const OverallStatCard = ({
 
 interface OverallStatRowProps {
   icon: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   value: string;
   isWarning?: boolean;
 }
