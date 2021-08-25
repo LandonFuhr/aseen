@@ -103,7 +103,7 @@ const OverallStats = ({
     <Box p={2}>
       <Grid container spacing={2}>
         {statCards.map((statCard, i) => (
-          <Grid key={i} item xs={6} sm={4} md={3}>
+          <Grid key={i} item xs={6} sm={4}>
             {statCard}
           </Grid>
         ))}
