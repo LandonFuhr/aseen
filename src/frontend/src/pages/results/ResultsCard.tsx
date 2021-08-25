@@ -44,7 +44,7 @@ export const ResultsCard = ({
           animalId={data.animalId}
           statsOverall={data.statsOverall}
         />
-        <ResultsTable data={data} />
+        {data.statsPerRegion.length > 0 && <ResultsTable data={data} />}
       </Box>
     </Paper>
   );
