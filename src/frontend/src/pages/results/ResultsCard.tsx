@@ -26,6 +26,7 @@ export const ResultsCard = ({
   backgroundColor,
   dotColor,
 }: ResultsCardProps) => {
+  const animalId = getNiceAnimalId({ animalId: data.animalId });
   return (
     <Paper>
       <Box pt={2}>
@@ -38,17 +39,18 @@ export const ResultsCard = ({
           alignItems="center"
         >
           <ColorDot color={dotColor} />
-          <Typography variant="h6">{data.animalId}</Typography>
+          <Typography variant="h6">{animalId}</Typography>
         </Box>
-        <OverallStats
-          animalId={data.animalId}
-          statsOverall={data.statsOverall}
-        />
+        <OverallStats animalId={animalId} statsOverall={data.statsOverall} />
         {data.statsPerRegion.length > 0 && <ResultsTable data={data} />}
       </Box>
     </Paper>
   );
 };
+
+function getNiceAnimalId({ animalId }: { animalId: string }): string {
+  return animalId.replace(/_/g, " ");
+}
 
 const ResultsTable = ({ data }: ResultsTableProps) => {
   return (

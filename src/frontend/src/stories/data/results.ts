@@ -19,17 +19,33 @@ export function createFakeBehaviourResults({
       },
       behaviourAnalysisAlgorithmId: "SOME ID",
     },
-    data: Array(nAnimals).fill(createAnimalData({ nRegions })),
+    data: createMultipleFakeAnimalData({ nAnimals, nRegions }),
   };
 }
 
-function createAnimalData({
+function createMultipleFakeAnimalData({
+  nAnimals,
   nRegions,
 }: {
+  nAnimals: number;
+  nRegions: number;
+}): BehaviourResultsData[] {
+  const data: BehaviourResultsData[] = [];
+  for (let i = 0; i < nAnimals; i++) {
+    data.push(createAnimalData({ animalId: `Mouse_${i + 1}`, nRegions }));
+  }
+  return data;
+}
+
+function createAnimalData({
+  animalId,
+  nRegions,
+}: {
+  animalId: string;
   nRegions: number;
 }): BehaviourResultsData {
   return {
-    animalId: "Mouse",
+    animalId,
     statsOverall: {
       totalDistanceTravelledInPixels: 1000,
       averageSpeedInPixelsPerSecond: 3,
