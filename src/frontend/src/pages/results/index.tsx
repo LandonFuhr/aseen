@@ -2,7 +2,7 @@ import { Box, Grid, Container } from "@material-ui/core";
 import { AppBarCustom } from "../../components/AppBar";
 import { OutlineButton } from "../../components/Buttons";
 import { FolderOutlined, HomeRounded } from "@material-ui/icons";
-import { ResultsTable } from "./ResultsTable";
+import { ResultsCard } from "./ResultsCard";
 import { mouseColors } from "../../core/mouseColors";
 import { useResultsController } from "./controller";
 import { BehaviourResults } from "../../shared/ipc";
@@ -40,7 +40,7 @@ export const Results = ({
               <Grid container spacing={4}>
                 {behaviourResults?.data.map((data, i) => (
                   <Grid key={i} item xs={12}>
-                    <ResultsTable
+                    <ResultsCard
                       data={data}
                       backgroundColor={mouseColors[i]?.translucent}
                       dotColor={mouseColors[i]?.opaque}

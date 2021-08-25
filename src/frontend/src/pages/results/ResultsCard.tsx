@@ -19,13 +19,13 @@ import {
   AnimalOverallStats,
   RegionStats,
 } from "../../shared/ipc/BehaviourResults";
-import "./ResultsTable.css";
+import "./ResultsCard.css";
 
-export const ResultsTable = ({
+export const ResultsCard = ({
   data,
   backgroundColor,
   dotColor,
-}: ResultsTableProps) => {
+}: ResultsCardProps) => {
   return (
     <Paper>
       <Box pt={2}>
@@ -44,24 +44,30 @@ export const ResultsTable = ({
           animalId={data.animalId}
           statsOverall={data.statsOverall}
         />
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Region</TableCell>
-              <TableCell>Time Fully Inside (s)</TableCell>
-              <TableCell>Time Partly Inside (s)</TableCell>
-              <TableCell>Interaction Time (s)</TableCell>
-              <TableCell># of Entries</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.statsPerRegion.map((regionStats, i) => (
-              <ResultsRow key={i} regionStats={regionStats} />
-            ))}
-          </TableBody>
-        </Table>
+        <ResultsTable data={data} />
       </Box>
     </Paper>
+  );
+};
+
+const ResultsTable = ({ data }: ResultsTableProps) => {
+  return (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Region</TableCell>
+          <TableCell>Time Fully Inside (s)</TableCell>
+          <TableCell>Time Partly Inside (s)</TableCell>
+          <TableCell>Interaction Time (s)</TableCell>
+          <TableCell># of Entries</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {data.statsPerRegion.map((regionStats, i) => (
+          <ResultsRow key={i} regionStats={regionStats} />
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 
@@ -195,7 +201,11 @@ const ResultsRow = ({ regionStats }: ResultsRowProps) => {
   );
 };
 
-export interface ResultsTableProps {
+interface ResultsTableProps {
+  data: BehaviourResultsData;
+}
+
+export interface ResultsCardProps {
   data: BehaviourResultsData;
   backgroundColor?: string;
   dotColor?: string;
