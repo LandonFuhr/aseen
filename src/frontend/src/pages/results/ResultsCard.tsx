@@ -132,7 +132,7 @@ const OverallStatCard = ({
   isWarning,
 }: OverallStatRowProps) => {
   return (
-    <Paper variant="outlined">
+    <Paper variant="outlined" style={{ height: "100%" }}>
       <Box
         m={1}
         p={1}
