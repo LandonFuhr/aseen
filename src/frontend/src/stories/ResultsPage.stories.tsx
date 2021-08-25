@@ -37,6 +37,30 @@ MultiMouseWithRegions.args = {
   behaviourResults: createFakeBehaviourResults({ nAnimals: 3, nRegions: 3 }),
 };
 
+const behaviourResultsWithMissingMouse = createFakeBehaviourResults({
+  nAnimals: 3,
+  nRegions: 3,
+});
+behaviourResultsWithMissingMouse.data.push({
+  animalId: "Missing Mouse",
+  statsOverall: {
+    totalDistanceTravelledInPixels: 0,
+    averageSpeedInPixelsPerSecond: 0,
+    fractionOfFramesWithAnimalPartlyDetected: 0,
+    fractionOfFramesWithAnimalFullyDetected: 0,
+  },
+  statsPerRegion: [],
+  sourceData: {
+    distanceTravelledBetweenEachFrameInPixels: [],
+  },
+});
+export const MissingMouse = Template.bind({});
+MissingMouse.args = {
+  onHomeClick,
+  handleOpenResultsFolder,
+  behaviourResults: behaviourResultsWithMissingMouse,
+};
+
 function onHomeClick() {
   console.log("Home");
 }

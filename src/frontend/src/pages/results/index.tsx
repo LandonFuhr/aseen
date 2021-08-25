@@ -12,6 +12,11 @@ export const Results = ({
   handleOpenResultsFolder,
   behaviourResults,
 }: ResultsPageProps) => {
+  if (behaviourResults) {
+    behaviourResults.data = behaviourResults.data.filter(
+      (data) => data.statsOverall.fractionOfFramesWithAnimalPartlyDetected > 0
+    );
+  }
   return (
     <>
       <AppBarCustom text="Results" />
