@@ -1,53 +1,17 @@
 import { Box, Grid, Container } from "@material-ui/core";
 import { AppBarCustom } from "../../components/AppBar";
 import { OutlineButton } from "../../components/Buttons";
-import { useResultsPaths } from "../../components/PersistentProviders/ResultsPaths";
 import { FolderOutlined, HomeRounded } from "@material-ui/icons";
-import { useRouter } from "../../components/PersistentProviders/Router";
-import { Page } from "../../core/types";
-import { openFolder } from "../../core/electron/shell";
-import { useEffect, useState } from "react";
-import { readBehaviourResultsFile } from "../../core/electron/ipc";
-import { BehaviourResults } from "../../shared/ipc";
 import { ResultsTable } from "./ResultsTable";
 import { mouseColors } from "../../core/mouseColors";
+import { useResultsController } from "./controller";
+import { BehaviourResults } from "../../shared/ipc";
 
-const Results = () => {
-  const resultsPaths = useResultsPaths();
-  const router = useRouter();
-  const [behaviourResults, setBehaviourResults] = useState<BehaviourResults>();
-
-  useEffect(() => {
-    if (resultsPaths === null) return;
-    let cancelled = false;
-    readBehaviourResultsFile({
-      path: resultsPaths.behaviourAssayResultsJsonPath,
-    }).then((behaviourResults) => {
-      if (cancelled) return;
-      setBehaviourResults(behaviourResults);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [resultsPaths]);
-
-  function handleOpenResultsFolder() {
-    if (resultsPaths === null) return;
-    openFolder(resultsPaths.resultsFolder)
-      .then((errorMessage) => {
-        if (errorMessage !== "") {
-          console.error("Folder open error:", errorMessage);
-        }
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  }
-
-  if (resultsPaths === null) {
-    return null;
-  }
-
+export const Results = ({
+  onHomeClick,
+  handleOpenResultsFolder,
+  behaviourResults,
+}: ResultsPageProps) => {
   return (
     <>
       <AppBarCustom text="Results" />
@@ -60,7 +24,7 @@ const Results = () => {
                   <OutlineButton
                     text="Back Home"
                     icon={<HomeRounded />}
-                    onClick={() => router.setPage(Page.home)}
+                    onClick={onHomeClick}
                   />
                 </Grid>
                 <Grid item>
@@ -92,4 +56,16 @@ const Results = () => {
   );
 };
 
-export default Results;
+export interface ResultsPageProps {
+  handleOpenResultsFolder: () => void;
+  onHomeClick: () => void;
+  behaviourResults?: BehaviourResults;
+}
+
+const ResultsWithController = () => {
+  const props = useResultsController();
+
+  return <Results {...props} />;
+};
+
+export default ResultsWithController;
