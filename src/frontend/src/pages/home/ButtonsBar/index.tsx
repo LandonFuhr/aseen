@@ -1,9 +1,7 @@
 import { Grid } from "@material-ui/core";
-import { GithubButton, HelpAndDocsButton } from "./ButtonsImpl";
 import "../styles.css";
 
-const ButtonsBar = () => {
-  const buttons = [<HelpAndDocsButton />, <GithubButton />];
+const ButtonsBar = ({ buttons }: ButtonsBarProps) => {
   return (
     <Grid container spacing={4}>
       {buttons.map((button, i) => {
@@ -16,5 +14,9 @@ const ButtonsBar = () => {
     </Grid>
   );
 };
+
+interface ButtonsBarProps {
+  buttons: React.ReactNodeArray;
+}
 
 export default ButtonsBar;

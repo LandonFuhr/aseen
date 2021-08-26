@@ -1,6 +1,16 @@
-import { HelpOutline } from "@material-ui/icons";
+import { HelpOutline, FolderOpenOutlined } from "@material-ui/icons";
 import { OutlineButton } from "../../../components/Buttons";
 import { openExternalLink } from "../../../core/electron/shell";
+
+export const SavedResultsButton = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <OutlineButton
+      onClick={onClick}
+      text="Saved Results"
+      icon={<FolderOpenOutlined />}
+    />
+  );
+};
 
 export const HelpAndDocsButton = () => {
   return (
