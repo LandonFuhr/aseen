@@ -22,7 +22,7 @@
     "electron:build:main:ffprobe": "ts-node builder/ffprobe.ts",
     "electron:build:splash": "ts-node builder/splash.ts",
     "[[[ --- REACT --- ]]]": "",
-    "react:watch": "(cd src/frontend) && (npm run start)",
+    "react:watch": "npm run start --prefix ./src/frontend",
     "react:watch-mock-electron": "cross-env REACT_APP_MOCK_LEVEL=WEB npm run react:watch",
     "react:watch-mock-analyzer": "cross-env REACT_APP_MOCK_LEVEL=ELECTRON npm run react:watch",
     "react:build": "(cd src/frontend) && (cross-env BUILD_PATH=../../dist/build-frontend npm run build) && (cd../..)",
