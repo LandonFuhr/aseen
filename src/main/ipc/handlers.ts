@@ -13,6 +13,7 @@ import {
   JsonFileOpenRequest,
   ResultsPaths,
   ResultsPathsRequest,
+  SavedResult,
 } from "../../frontend/src/shared/ipc";
 import { ArenaSetup } from "../../frontend/src/shared/ipc/ArenaSetup";
 import { ffprobePath } from "../ffprobe-static-webpack";
@@ -20,6 +21,7 @@ import ffprobe from "ffprobe";
 import fs, { promises as fspromises } from "fs";
 import path from "path";
 import log from "electron-log";
+import { ArenaType } from "../../frontend/src/core/types";
 
 export async function handleArenaSetupSave({
   arenaSetup,
@@ -137,4 +139,11 @@ export async function handleReadBehaviourResultsFileRequest(
   return fspromises.readFile(request.path).then((data) => {
     return JSON.parse(data.toString());
   });
+}
+
+export async function handleReadAllSavedResultsRequest(): Promise<
+  SavedResult[]
+> {
+  // TODO
+  return [];
 }

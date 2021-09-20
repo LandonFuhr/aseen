@@ -9,6 +9,7 @@ export const BEHAVIOUR_CHANNEL = "behaviour";
 export const CREATE_VIDEO_CHANNEL = "create-video";
 export const RESULTS_PATHS_CREATION_CHANNEL = "create-results-paths";
 export const READ_BEHAVIOUR_RESULTS_FILE_CHANNEL = "read-behaviour-results";
+export const READ_ALL_SAVED_RESULTS = "read-all-saved-results";
 
 export interface FileMetadata {
   createdAtDate: Date;
@@ -76,3 +77,4 @@ export interface JsonFileOpenRequest {
 }
 
 export type { BehaviourResults };
+export type { SavedResult } from "./SavedResults";
