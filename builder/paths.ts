@@ -5,7 +5,7 @@ function getPythonBinaryPath(): string {
     case "win32":
       return path.join("Scripts/python.exe");
     case "linux":
-      return path.join("bin/python");
+      return path.join("bin/python3.7");
     default:
       throw new Error("Cannot determine operating system");
   }
