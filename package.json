@@ -13,7 +13,7 @@
     "build:run": "run-p   *:build",
     "build": "run-s   clean   build:run",
     "[[[ --- ELECTRON --- ]]]": "",
-    "electron:dev": "(npm run electron:build) && (wait-on tcp:3000) && (electron . --debug)",
+    "electron:dev": "(npm run electron:build) && (wait-on tcp:3000) && (electron . --debug --no-sandbox)",
     "electron:watch": "nodemon --exec npm run electron:dev",
     "electron": "cross-env ELECTRON_IS_DEV=0 electron .",
     "electron:build": "run-s   electron:build:main   electron:build:splash",
