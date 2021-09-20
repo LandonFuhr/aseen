@@ -21,7 +21,6 @@ import ffprobe from "ffprobe";
 import fs, { promises as fspromises } from "fs";
 import path from "path";
 import log from "electron-log";
-import { ArenaType } from "../../frontend/src/core/types";
 
 export async function handleArenaSetupSave({
   arenaSetup,
