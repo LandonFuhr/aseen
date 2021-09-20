@@ -1,4 +1,4 @@
-import fs from "fs";
 import { splash } from "./paths";
+import fse from "fs-extra";
 
-fs.copyFileSync(splash.src, splash.dst);
+fse.copySync(splash.src, splash.dst);
