@@ -112,7 +112,18 @@ const SavedResultsBody = ({
   handleOpenResults: (args: { savedResult: SavedResult }) => void;
 }) => {
   if (savedResultsState.isLoading) {
-    return <CircularProgress />;
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        width="100%"
+        paddingTop="80px"
+      >
+        <CircularProgress />
+      </Box>
+    );
   }
   if (savedResultsState.hasError) {
     return (
@@ -143,26 +154,24 @@ const SavedResultsBody = ({
         </TableRow>
       </TableHead>
       <TableBody>
-        {savedResultsState.isLoading
-          ? "Loading"
-          : savedResultsState.savedResults.map((result, i) => (
-              <TableRow
-                key={i}
-                hover={true}
-                onClick={() => handleOpenResults({ savedResult: result })}
-                style={{ cursor: "pointer" }}
-              >
-                <TableCell>{result.videoPath}</TableCell>
-                <TableCell>{arenaTypeToString(result.arenaType)}</TableCell>
-                <TableCell>
-                  {result.createdAtDate.toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </TableCell>
-              </TableRow>
-            ))}
+        {savedResultsState.savedResults.map((result, i) => (
+          <TableRow
+            key={i}
+            hover={true}
+            onClick={() => handleOpenResults({ savedResult: result })}
+            style={{ cursor: "pointer" }}
+          >
+            <TableCell>{result.videoPath}</TableCell>
+            <TableCell>{arenaTypeToString(result.arenaType)}</TableCell>
+            <TableCell>
+              {result.createdAtDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
