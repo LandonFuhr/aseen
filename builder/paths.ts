@@ -1,5 +1,16 @@
 import path from "path";
 
+function getPythonBinaryPath(): string {
+  switch (process.platform) {
+    case "win32":
+      return path.join("Scripts/python.exe");
+    case "linux":
+      return path.join("bin/python");
+    default:
+      throw new Error("Cannot determine operating system");
+  }
+}
+
 const rootDir = path.join(__dirname, "..");
 const buildDir = path.join(rootDir, "dist");
 const analysisModulesDir = path.join(buildDir, "analysis_modules");
@@ -9,7 +20,7 @@ const ffprobe = {
   dst: path.join(buildDir, "ffprobe-bin"),
 };
 const pyinstaller = {
-  pythonPath: path.join(rootDir, "venv", "Scripts", "python.exe"),
+  pythonPath: path.join(rootDir, "venv", getPythonBinaryPath()),
   workPath: path.join(rootDir, "pyinstaller_build"),
 };
 const splash = {
