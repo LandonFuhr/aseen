@@ -15,6 +15,21 @@ import "./styles.css";
 const Home = () => {
   const [shouldShowSavedResults, setShouldShowSavedResults] = useState(false);
 
+  useEffect(() => {
+    saveResults({
+      savedResults: {
+        arenaSetupPath: "test.setup",
+        createdAtDate: new Date(),
+        resultsPaths: {
+          outputVideoPath: "TEST.mp4",
+          trackingResultsH5Path: "TEST.h5",
+          behaviourAssayResultsJsonPath: "TEST.json",
+          resultsFolder: "test/",
+        },
+      },
+    });
+  }, []);
+
   function handleOpenSavedResults() {
     setShouldShowSavedResults(true);
   }
