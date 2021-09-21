@@ -24,6 +24,8 @@ import { useSetResultsPaths } from "../../../components/PersistentProviders/Resu
 import { ResultsPaths } from "../../../shared/ipc";
 import { useRouter } from "../../../components/PersistentProviders/Router";
 import { Page } from "../../../core/types";
+import { useVideoMetadata } from "../../../components/VideoMetadata/hooks";
+import { durationToString, getStringFromMemorySize } from "../../../core/utils";
 
 const SavedResults = ({ show, onClose }: SavedResultsProps) => {
   const savedResultsState = useSavedResults({ show });
@@ -49,7 +51,7 @@ const SavedResults = ({ show, onClose }: SavedResultsProps) => {
           }}
         >
           <Container maxWidth="md">
-            <Card style={{ minHeight: "80vh" }}>
+            <Card style={{ minHeight: "80vh", width: "100%" }}>
               <CardContent>
                 <Box
                   display="flex"
@@ -98,13 +100,6 @@ const SavedResultsBody = ({
   setResultsPaths: Dispatch<SetStateAction<ResultsPaths | null>>;
   savedResultsState: SavedResultsState;
 }) => {
-  const router = useRouter();
-
-  function handleRowClick({ result }: { result: SavedResult }) {
-    setResultsPaths(result.resultsPaths);
-    router.setPage(Page.results);
-  }
-
   if (savedResultsState.isLoading) {
     return (
       <Box
@@ -140,42 +135,75 @@ const SavedResultsBody = ({
   }
   return (
     <TableContainer style={{ maxHeight: "65vh" }}>
-      <Table stickyHeader>
+      <Table stickyHeader style={{ width: "100%", overflow: "hidden" }}>
         <TableHead>
           <TableRow>
             <TableCell width="20%">Video</TableCell>
-            <TableCell>Folder</TableCell>
+            <TableCell>Size</TableCell>
+            <TableCell>Length</TableCell>
+            <TableCell width="30%">Folder</TableCell>
             <TableCell width="20%">Created</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {savedResultsState.savedResults.map((result, i) => (
-            <TableRow
+            <SavedResultRow
               key={i}
-              hover={true}
-              onClick={() => handleRowClick({ result })}
-              style={{ cursor: "pointer" }}
-            >
-              <TableCell>
-                <video
-                  width="100px"
-                  height="100px"
-                  src={result.resultsPaths.outputVideoPath}
-                />
-              </TableCell>
-              <TableCell>{result.resultsPaths.resultsFolder}</TableCell>
-              <TableCell>
-                {result.createdAtDate.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </TableCell>
-            </TableRow>
+              savedResult={result}
+              setResultsPaths={setResultsPaths}
+            />
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+  );
+};
+
+const SavedResultRow = ({
+  savedResult,
+  setResultsPaths,
+}: {
+  savedResult: SavedResult;
+  setResultsPaths: Dispatch<SetStateAction<ResultsPaths | null>>;
+}) => {
+  const metadata = useVideoMetadata(savedResult.resultsPaths.outputVideoPath);
+  const router = useRouter();
+
+  function handleRowClick({ result }: { result: SavedResult }) {
+    setResultsPaths(result.resultsPaths);
+    router.setPage(Page.results);
+  }
+
+  return (
+    <TableRow
+      hover={true}
+      onClick={() => handleRowClick({ result: savedResult })}
+      style={{ cursor: "pointer" }}
+    >
+      <TableCell>
+        <video
+          width="100px"
+          height="100px"
+          src={savedResult.resultsPaths.outputVideoPath}
+        />
+      </TableCell>
+      <TableCell>
+        {metadata ? getStringFromMemorySize(metadata.nBytes) : "..."}
+      </TableCell>
+      <TableCell>
+        {metadata ? durationToString(metadata.durationInMilliseconds) : "..."}
+      </TableCell>
+      <TableCell>{savedResult.resultsPaths.resultsFolder}</TableCell>
+      <TableCell>
+        {savedResult.createdAtDate.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+        })}
+      </TableCell>
+    </TableRow>
   );
 };
 
