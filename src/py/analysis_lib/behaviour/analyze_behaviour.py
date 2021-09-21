@@ -105,6 +105,10 @@ def update_region_stats(results, individual_was_in_region_last_frame, individual
         get_region_stats(individual.name, region._id,
                          results).frames_partly_inside += 1
 
+    if individual_is_interacting_with_shape(individual, region.geometry):
+        get_region_stats(individual.name, region._id,
+                         results).frames_of_interaction += 1
+
 
 def update_individual_distance_travelled(center_positions_prev_non_none_frame, distances_between_frames, frame_index, individual):
     curr_center = get_center(individual)
@@ -155,6 +159,15 @@ def create_entry_tracker(individual_names: List[str], region_ids: List[str]) -> 
         for region_id in region_ids:
             entry_tracker[individual_name][region_id] = False
     return entry_tracker
+
+
+def individual_is_interacting_with_shape(individual: Individual, shape: Union[CircleGeometry, RectangleGeometry]) -> bool:
+    polygon = polygon_from_shape(shape)
+    for bp in individual.bodyparts:
+        point = geometry.Point(bp.coords.x, bp.coords.y)
+        if bp.name == 'nose' and polygon.contains(point):
+            return True
+    return False
 
 
 def individual_is_partly_inside_shape(individual: Individual, shape: Union[CircleGeometry, RectangleGeometry]) -> bool:

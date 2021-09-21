@@ -105,9 +105,37 @@ def test_it_counts_frames_partly_inside_areas():
         'Mouse 1', '2', results).frames_partly_inside == 4
 
 
-@pytest.mark.todo
 def test_it_counts_interaction_frames():
-    pass
+    inside_region_1 = [3.0, 3.0, 1.0]
+    inside_both_regions = [1.5, 1.5, 1.0]
+    outside_regions = [5.0, 5.0, 1.0]
+    dlc_results = DlcResults(
+        get_labels(['Mouse 1'], ['nose', 'ear_left', 'ear_right']),
+        np.array([
+            inside_region_1 + outside_regions + outside_regions,  # 1
+            outside_regions + outside_regions + outside_regions,
+            inside_region_1 + outside_regions + outside_regions,  # 1
+            inside_both_regions + outside_regions + outside_regions,  # 1 & 2
+            outside_regions + outside_regions + outside_regions,
+        ], dtype=float))
+    arena_setup = ArenaSetup(
+        areas=[Region(_id="1",
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=1, y=1),
+                          width=3, height=3, rotation=0), color_palette=None),
+               Region(_id="2",
+                      geometry=RectangleGeometry(
+                          top_left=Point(x=0, y=0),
+                          width=2, height=2, rotation=0), color_palette=None)],
+        interaction_zones=[])
+
+    results = basic_behavioural_assay_algorithm(
+        arena_setup=arena_setup, dlc_results=dlc_results)
+
+    assert get_region_stats(
+        'Mouse 1', '1', results).frames_of_interaction == 3
+    assert get_region_stats(
+        'Mouse 1', '2', results).frames_of_interaction == 1
 
 
 def test_it_tracks_total_distance_using_center():
