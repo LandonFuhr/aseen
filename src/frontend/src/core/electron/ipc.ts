@@ -8,6 +8,7 @@ import {
   READ_ALL_SAVED_RESULTS,
   READ_BEHAVIOUR_RESULTS_FILE_CHANNEL,
   SAVE_ARENA_SETUP_CHANNEL,
+  SAVE_RESULTS,
   VideoCreatorTrigger,
   VID_METADATA_CHANNEL,
 } from "../../shared/ipc";
@@ -64,6 +65,14 @@ export async function readBehaviourResultsFile(
   request: JsonFileOpenRequest
 ): Promise<BehaviourResults> {
   return ipcRenderer.invoke(READ_BEHAVIOUR_RESULTS_FILE_CHANNEL, request);
+}
+
+export async function saveResults({
+  savedResults,
+}: {
+  savedResults: SavedResult;
+}): Promise<void> {
+  return ipcRenderer.invoke(SAVE_RESULTS, savedResults);
 }
 
 export async function getAllSavedResults(): Promise<SavedResult[]> {

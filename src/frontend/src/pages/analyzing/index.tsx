@@ -11,12 +11,13 @@ import { AppBarCustom } from "../../components/AppBar";
 import { Page } from "../../core/types";
 import { VideoCard } from "./VideoCard";
 import { useArenaSetupPath } from "../../components/PersistentProviders/ArenaSetupPath";
-import { ProgressUpdate } from "../../shared/ipc";
+import { ProgressUpdate, SavedResult } from "../../shared/ipc";
 import { runAnalyzer, stopAllAnalyzers } from "../../core/Analyzer";
 import { useCreateResultsPaths } from "./useCreateResultsPaths";
 import { useVideoMetadata } from "../../components/VideoMetadata/hooks";
 import { useSetResultsPaths } from "../../components/PersistentProviders/ResultsPaths";
 import { ErrorToast } from "../../components/Toast/ErrorToast";
+import { saveResults } from "../../core/electron/ipc";
 
 const Analyzing = () => {
   const vidPathState = useVideoPathState();
@@ -61,8 +62,16 @@ const Analyzing = () => {
         if (cancelled) return;
         switch (exitInfo.type) {
           case "SUCCESS":
-            setResultsPaths(resultsPaths);
-            router.setPage(Page.results);
+            const savedResults: SavedResult = {
+              arenaSetupPath,
+              resultsPaths,
+              createdAtDate: new Date(),
+            };
+            saveResults({ savedResults }).then(() => {
+              if (cancelled) return;
+              setResultsPaths(resultsPaths);
+              router.setPage(Page.results);
+            });
             break;
           case "ERROR":
             throw new Error(exitInfo.data.error);

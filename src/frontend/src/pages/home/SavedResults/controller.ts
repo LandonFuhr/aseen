@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { getAllSavedResults } from "../../../core/electron/ipc";
-import { openFolder } from "../../../core/electron/shell";
 import { SavedResult } from "../../../shared/ipc/SavedResults";
 
-export function useSavedResults(): SavedResultsState {
+export function useSavedResults({
+  show,
+}: {
+  show: boolean;
+}): SavedResultsState {
   const [state, setState] = useState<SavedResultsState>({ isLoading: true });
 
   useEffect(() => {
+    if (!show) return;
     let cancelled = false;
     getAllSavedResults()
       .then((savedResults) => {
@@ -24,15 +28,9 @@ export function useSavedResults(): SavedResultsState {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [show]);
 
   return state;
-}
-
-export function useHandleOpenResults() {
-  return async ({ savedResult }: { savedResult: SavedResult }) => {
-    await openFolder(savedResult.resultsFolderPath);
-  };
 }
 
 export type SavedResultsState =

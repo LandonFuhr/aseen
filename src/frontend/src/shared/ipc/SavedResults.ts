@@ -1,9 +1,7 @@
-import { ArenaType } from "../../core/types";
+import { ResultsPaths } from ".";
 
 export interface SavedResult {
-  videoPath: string;
-  arenaType: ArenaType;
-  behaviourResultsJsonPath: string;
+  arenaSetupPath: string;
   createdAtDate: Date;
-  resultsFolderPath: string;
+  resultsPaths: ResultsPaths;
 }

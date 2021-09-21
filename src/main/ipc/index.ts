@@ -8,6 +8,7 @@ import {
   RESULTS_PATHS_CREATION_CHANNEL,
   READ_BEHAVIOUR_RESULTS_FILE_CHANNEL,
   READ_ALL_SAVED_RESULTS,
+  SAVE_RESULTS,
 } from "../../frontend/src/shared/ipc";
 import { BrowserWindow, ipcMain } from "electron";
 import {
@@ -17,6 +18,7 @@ import {
   handleResultsPathsCreationRequest,
   handleReadBehaviourResultsFileRequest,
   handleReadAllSavedResultsRequest,
+  handleSaveResults,
 } from "./handlers";
 import { forwardBidirectionalMessagesBetweenWindows } from "./forwarder";
 
@@ -48,6 +50,7 @@ export function setupIpcListeners({
   listenToArenaSetupSaveIpc(reactWindow);
   listenToResultsPathsCreationRequest();
   listenToReadBehaviourResultsFileRequest();
+  listenToSaveResultsRequest();
   listenToReadAllSavedResultsRequest();
 }
 
@@ -77,6 +80,10 @@ function listenToReadBehaviourResultsFileRequest() {
     READ_BEHAVIOUR_RESULTS_FILE_CHANNEL,
     handleReadBehaviourResultsFileRequest
   );
+}
+
+function listenToSaveResultsRequest() {
+  ipcMain.handle(SAVE_RESULTS, handleSaveResults);
 }
 
 function listenToReadAllSavedResultsRequest() {

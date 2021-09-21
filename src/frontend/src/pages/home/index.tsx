@@ -1,6 +1,7 @@
 import { Grid, Box, Container } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppBarCustom } from "../../components/AppBar";
+import { saveResults } from "../../core/electron/ipc";
 import ArenaCards from "./ArenaCards";
 import ButtonsBar from "./ButtonsBar";
 import {
@@ -13,6 +14,21 @@ import "./styles.css";
 
 const Home = () => {
   const [shouldShowSavedResults, setShouldShowSavedResults] = useState(false);
+
+  useEffect(() => {
+    saveResults({
+      savedResults: {
+        arenaSetupPath: "test.setup",
+        createdAtDate: new Date(),
+        resultsPaths: {
+          outputVideoPath: "TEST.mp4",
+          trackingResultsH5Path: "TEST.h5",
+          behaviourAssayResultsJsonPath: "TEST.json",
+          resultsFolder: "test/",
+        },
+      },
+    });
+  }, []);
 
   function handleOpenSavedResults() {
     setShouldShowSavedResults(true);

@@ -13,37 +13,23 @@ import {
   TableBody,
   CircularProgress,
   Button,
+  TableContainer,
 } from "@material-ui/core";
-import {
-  SavedResultsState,
-  useHandleOpenResults,
-  useSavedResults,
-} from "./controller";
+import { SavedResultsState, useSavedResults } from "./controller";
 import { Close } from "@material-ui/icons";
-import { arenaTypeToString } from "../../../core/utils";
 import { SavedResult } from "../../../shared/ipc/SavedResults";
 import { ErrorToast } from "../../../components/Toast/ErrorToast";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useSetResultsPaths } from "../../../components/PersistentProviders/ResultsPaths";
+import { ResultsPaths } from "../../../shared/ipc";
+import { useRouter } from "../../../components/PersistentProviders/Router";
+import { Page } from "../../../core/types";
 
 const SavedResults = ({ show, onClose }: SavedResultsProps) => {
-  const savedResultsState = useSavedResults();
-  const handleOpenResults = useHandleOpenResults();
+  const savedResultsState = useSavedResults({ show });
+  const setResultsPaths = useSetResultsPaths();
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
-
-  function handleOpenResultsWrapper({
-    savedResult,
-  }: {
-    savedResult: SavedResult;
-  }) {
-    handleOpenResults({ savedResult }).catch((e) => {
-      console.error(e);
-      setError(
-        `Unable to open results folder for video "${savedResult.videoPath}". Please check that the results folder is still located at "${savedResult.resultsFolderPath}".`
-      );
-      setShowError(true);
-    });
-  }
 
   function handleErrorClose() {
     setShowError(false);
@@ -63,12 +49,13 @@ const SavedResults = ({ show, onClose }: SavedResultsProps) => {
           }}
         >
           <Container maxWidth="md">
-            <Card style={{ height: "80vh" }}>
+            <Card style={{ minHeight: "80vh" }}>
               <CardContent>
                 <Box
                   display="flex"
                   flexDirection="row"
                   justifyContent="space-between"
+                  paddingBottom={2}
                 >
                   <Typography variant="h3">Saved Results</Typography>
                   <Box
@@ -82,8 +69,8 @@ const SavedResults = ({ show, onClose }: SavedResultsProps) => {
                   </Box>
                 </Box>
                 <SavedResultsBody
+                  setResultsPaths={setResultsPaths}
                   savedResultsState={savedResultsState}
-                  handleOpenResults={handleOpenResultsWrapper}
                 />
               </CardContent>
             </Card>
@@ -105,12 +92,19 @@ const SavedResults = ({ show, onClose }: SavedResultsProps) => {
 };
 
 const SavedResultsBody = ({
+  setResultsPaths,
   savedResultsState,
-  handleOpenResults,
 }: {
+  setResultsPaths: Dispatch<SetStateAction<ResultsPaths | null>>;
   savedResultsState: SavedResultsState;
-  handleOpenResults: (args: { savedResult: SavedResult }) => void;
 }) => {
+  const router = useRouter();
+
+  function handleRowClick({ result }: { result: SavedResult }) {
+    setResultsPaths(result.resultsPaths);
+    router.setPage(Page.results);
+  }
+
   if (savedResultsState.isLoading) {
     return (
       <Box
@@ -145,35 +139,43 @@ const SavedResultsBody = ({
     );
   }
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell width="45%">Video</TableCell>
-          <TableCell>Type</TableCell>
-          <TableCell width="20%">Created</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {savedResultsState.savedResults.map((result, i) => (
-          <TableRow
-            key={i}
-            hover={true}
-            onClick={() => handleOpenResults({ savedResult: result })}
-            style={{ cursor: "pointer" }}
-          >
-            <TableCell>{result.videoPath}</TableCell>
-            <TableCell>{arenaTypeToString(result.arenaType)}</TableCell>
-            <TableCell>
-              {result.createdAtDate.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </TableCell>
+    <TableContainer style={{ maxHeight: "65vh" }}>
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell width="20%">Video</TableCell>
+            <TableCell>Folder</TableCell>
+            <TableCell width="20%">Created</TableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {savedResultsState.savedResults.map((result, i) => (
+            <TableRow
+              key={i}
+              hover={true}
+              onClick={() => handleRowClick({ result })}
+              style={{ cursor: "pointer" }}
+            >
+              <TableCell>
+                <video
+                  width="100px"
+                  height="100px"
+                  src={result.resultsPaths.outputVideoPath}
+                />
+              </TableCell>
+              <TableCell>{result.resultsPaths.resultsFolder}</TableCell>
+              <TableCell>
+                {result.createdAtDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
