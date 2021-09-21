@@ -1,6 +1,7 @@
 import { Grid, Box, Container } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppBarCustom } from "../../components/AppBar";
+import { saveResults } from "../../core/electron/ipc";
 import ArenaCards from "./ArenaCards";
 import ButtonsBar from "./ButtonsBar";
 import {

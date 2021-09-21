@@ -140,9 +140,49 @@ export async function handleReadBehaviourResultsFileRequest(
   });
 }
 
+export async function handleSaveResults(
+  _event: IpcMainInvokeEvent,
+  savedResults: SavedResult
+): Promise<void> {
+  const allSavedResults = await getSavedResultsFromFile();
+  allSavedResults.push(savedResults);
+  await writeAllSavedResultsToFile({ allSavedResults });
+}
+
+async function writeAllSavedResultsToFile({
+  allSavedResults,
+}: {
+  allSavedResults: SavedResult[];
+}): Promise<void> {
+  await fspromises.writeFile(
+    getSavedResultsJsonPath(),
+    JSON.stringify(allSavedResults)
+  );
+}
+
+async function getSavedResultsFromFile(): Promise<SavedResult[]> {
+  return fspromises
+    .readFile(getSavedResultsJsonPath())
+    .then((buffer) => JSON.parse(buffer.toString()))
+    .then((data: SavedResult[]) =>
+      data.map((result) => ({
+        ...result,
+        createdAtDate: new Date(result.createdAtDate),
+      }))
+    )
+    .catch(() => []);
+}
+
+function getSavedResultsJsonPath(): string {
+  return path.join(getAppDataPath(), "saved_results.json");
+}
+
+function getAppDataPath() {
+  return path.join(app.getPath("appData"), app.getName());
+}
+
 export async function handleReadAllSavedResultsRequest(): Promise<
   SavedResult[]
 > {
-  // TODO
-  return [];
+  return getSavedResultsFromFile();
 }
