@@ -1,6 +1,6 @@
 input: docs/src
 output: docs/dist
-url: # Add your website address here
+url: landonfuhr.github.io/aseen
 branding:
   title: Aseen
   logo: static/aseen.png
