@@ -1,0 +1,18 @@
+input: docs/src
+output: docs/dist
+url: # Add your website address here
+branding:
+  title: Aseen
+  logo: static/aseen.png
+meta:
+  title: " | Aseen"
+links:
+- text: Install
+  link: install.md
+  icon: download
+- text: GitHub
+  link: https://github.com/LandonFuhr/aseen
+  icon: mark-github
+  target: blank
+footer:
+  copyright: "Chan Lab, {{ year }}. University of Alberta, Canada."
