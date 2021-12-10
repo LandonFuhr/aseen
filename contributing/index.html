@@ -25,11 +25,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.1.692494382751" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.1.692495520534" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692494382751" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692495520534" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.1" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692494382751" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692495520534" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -357,6 +357,17 @@ cd ../..</code></pre>
 <p>See <strong>Windows</strong> tab</p>
 </doc-tab>
 </doc-tabs>
+<hr />
+<doc-anchor-target id="deployment">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deployment">#</doc-anchor-trigger>
+        <span>Deployment</span>
+    </h2>
+</doc-anchor-target>
+<p>To create an installable production version of Aseen, run the following command. This will create an installation program that can be sent to anyone using the same operating system. This requires ~5 GB of space and the last step of this process, <code v-pre>Making for target:</code> can take upwards of 30 minutes to complete.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">npm run make</code></pre>
+</doc-codeblock></div>
 <hr />
 <doc-anchor-target id="code-guidelines">
     <h2>
