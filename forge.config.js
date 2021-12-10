@@ -21,6 +21,7 @@ module.exports = {
       "pyinstaller_build",
       "builder",
       "icons",
+      ".github",
     ],
     afterExtract: [
       (extractPath, electronVersion, platform, arch, done) => {
