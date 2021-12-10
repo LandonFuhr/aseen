@@ -8,7 +8,7 @@
     "[[[ --- BUILD --- ]]]": "",
     "build:prod:clean": "ts-node builder/clean.ts",
     "build:prod:run": "run-p   *:build:prod",
-    "build:prod": "run-s   build:prod:clean   build:run:prod",
+    "build:prod": "run-s   build:prod:clean   build:prod:run",
     "make:run": "electron-forge make",
     "make": "run-s   build:prod   make:run",
     "package:run": "electron-forge package",
