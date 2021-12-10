@@ -113,4 +113,14 @@ See **Windows** tab
 
 ---
 
+## Deployment
+
+To create an installable production version of Aseen, run the following command. This will create an installation program that can be sent to anyone using the same operating system. This requires ~5 GB of space and the last step of this process, `Making for target:` can take upwards of 30 minutes to complete.
+
+```
+npm run make
+```
+
+---
+
 ## Code Guidelines
