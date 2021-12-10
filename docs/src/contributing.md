@@ -89,6 +89,28 @@ Install dependencies inside virtual environment
 pip install -r requirements.txt
 ```
 
+### 3. Verify Setup
+
+Run tests and make sure they all pass
+
+```
+npm test
+```
+
+Build the app locally to make sure the build system works. This is the most common source of errors
+
+```
+npm run package
+```
+
++++ Windows
+If this works correctly, it should create an executable at `aseen\out\Aseen-win32-x64\Aseen.exe`. Run this program to use the production build of the app!
++++ macOS
+See **Windows** tab
++++ Unix
+See **Windows** tab
++++
+
 ---
 
 ## Code Guidelines
