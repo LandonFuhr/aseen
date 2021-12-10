@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://landonfuhr.github.io/aseen/sitemap.xml.gz
+Sitemap: https://www.aseen.xyz/sitemap.xml.gz
