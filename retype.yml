@@ -14,5 +14,6 @@ links:
   link: https://github.com/LandonFuhr/aseen
   icon: mark-github
   target: blank
+favicon: static/favicon.ico
 footer:
   copyright: "Chan Lab, {{ year }}. University of Alberta, Canada."
