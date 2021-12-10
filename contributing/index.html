@@ -25,11 +25,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.1.692487977104" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.1.692494382751" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692487977104" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692494382751" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.1" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692487977104" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692494382751" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -329,6 +329,34 @@ cd ../..</code></pre>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">pip install -r requirements.txt</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="3-verify-setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#3-verify-setup">#</doc-anchor-trigger>
+        <span>3. Verify Setup</span>
+    </h3>
+</doc-anchor-target>
+<p>Run tests and make sure they all pass</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">npm test</code></pre>
+</doc-codeblock></div>
+<p>Build the app locally to make sure the build system works. This is the most common source of errors</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">npm run package</code></pre>
+</doc-codeblock></div>
+<doc-tabs>
+<doc-tab id="windows">
+<template #title>Windows</template>
+<p>If this works correctly, it should create an executable at <code v-pre>aseen\out\Aseen-win32-x64\Aseen.exe</code>. Run this program to use the production build of the app!</p>
+</doc-tab>
+<doc-tab id="macos">
+<template #title>macOS</template>
+<p>See <strong>Windows</strong> tab</p>
+</doc-tab>
+<doc-tab id="unix">
+<template #title>Unix</template>
+<p>See <strong>Windows</strong> tab</p>
+</doc-tab>
+</doc-tabs>
 <hr />
 <doc-anchor-target id="code-guidelines">
     <h2>
