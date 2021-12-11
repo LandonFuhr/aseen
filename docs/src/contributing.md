@@ -115,7 +115,7 @@ See **Windows** tab
 
 ## Deployment
 
-To create an installable production version of Aseen, run the following command. This will create an installation program that can be sent to anyone using the same operating system. This requires ~5 GB of space and the last step of this process, `Making for target:` can take upwards of 30 minutes to complete.
+To create an installable production version of Aseen, run the following command. This will create an installation program at `aseen\out\make\squirrel.windows\x64\Aseen-x.x.x Setup.exe` that can be sent to anyone using the same operating system. The build requires up to 10 GB of space and the last step of this process, `Making for target:` can take up to 30 minutes. The final `Aseen-x.x.x Setup.exe` program is ~900 MB and contains all the required files.
 
 ```
 npm run make
