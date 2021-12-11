@@ -6,30 +6,32 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Install | Aseen</title>
-    <meta name="title" content="Install | Aseen">
+    <title>Installation Guide | Aseen</title>
+    <meta name="title" content="Installation Guide | Aseen">
     <meta name="description" content="Download and setup Aseen on your own computer!" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.aseen.xyz/install/">
-    <meta property="og:title" content="Install | Aseen">
+    <meta property="og:title" content="Installation Guide | Aseen">
     <meta property="og:description" content="Download and setup Aseen on your own computer!">
+    <meta property="og:image" content="https://www.aseen.xyz/static/github-releases-dark.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.aseen.xyz/install/">
-    <meta property="twitter:title" content="Install | Aseen">
+    <meta property="twitter:title" content="Installation Guide | Aseen">
     <meta property="twitter:description" content="Download and setup Aseen on your own computer!">
+    <meta property="twitter:image" content="https://www.aseen.xyz/static/github-releases-dark.png">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.1.692495520534" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.1.692500723410" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692495520534" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692500723410" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.1" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692495520534" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692500723410" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -60,6 +62,16 @@
             <!-- Top Nav -->
             <nav class="hidden md:flex">
     <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                    <g fill="currentColor">
+                        <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                    </g>
+                </svg>
+                <span>Home</span>
+            </a>
+        </li>
         <li class="md:mr-6">
             <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/install/">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
@@ -166,6 +178,9 @@
                 <nav>
                     <ul class="flex flex-wrap justify-center items-center">
                         <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="index.md">Home</a>
+                        </li>
+                        <li class="mr-6">
                             <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="install.md">Install</a>
                         </li>
                         <li class="mr-6">
@@ -201,12 +216,92 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="install" class="break-words">
+<doc-anchor-target id="installation-guide" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#install">#</doc-anchor-trigger>
-        <span>Install</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installation-guide">#</doc-anchor-trigger>
+        <span>Installation Guide</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="downloading-aseen">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#downloading-aseen">#</doc-anchor-trigger>
+        <span>Downloading Aseen</span>
+    </h2>
+</doc-anchor-target>
+<p>The first step to get started with Aseen is to download the program. Go to the latest release in <a href="https://github.com/LandonFuhr/aseen/releases">GitHub releases for Aseen</a>. Click on the <em>Assets</em> dropdown to show the link to download the installer
+<figure class="content-center">
+    <img src="../static/github-releases-dark.png" alt="Highlight showing the download link in GitHub releases" />
+    <figcaption class="caption">Highlight showing the download link in GitHub releases</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="installing-aseen">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installing-aseen">#</doc-anchor-trigger>
+        <span>Installing Aseen</span>
+    </h2>
+</doc-anchor-target>
+<p>Open the <code v-pre>Aseen Setup.exe</code> file that you just downloaded.</p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>You may get a warning from Windows when you try to open the installer. Aseen is open source and does not have any malicious intent. If you feel comfortable installing Aseen, click the dropdown below and follow the images</p>
+<doc-panel id="getting-past-windows-protected-your-pc" collapsed>
+    <template #title>Getting past &quot;<em>Windows protected your PC</em>&quot;</template>
+<p><figure class="content-center">
+    <img src="../static/windows-warning-1.png" alt="First page of Windows warning with More Info button" />
+    <figcaption class="caption">First page of Windows warning with More Info button</figcaption>
+</figure>
+<figure class="content-center">
+    <img src="../static/windows-warning-2.png" alt="Second page of Windows warning with Run Anyway button" />
+    <figcaption class="caption">Second page of Windows warning with Run Anyway button</figcaption>
+</figure>
+</p>
+</doc-panel>
+        </div>
+    </div>
+</div>
+<p>This will take a second and then it will show a loading screen while it&#x27;s installing
+<figure class="content-center">
+    <img src="../static/squirrel-loading-screen.png" alt="Loading screen while Aseen is being installed" />
+    <figcaption class="caption">Loading screen while Aseen is being installed</figcaption>
+</figure>
+</p>
+<p>Once it finishes installing, it should automatically open the app!
+<figure class="content-center">
+    <img src="../static/aseen-home.png" alt="Home screen of Aseen that should automatically open after the installation completes" />
+    <figcaption class="caption">Home screen of Aseen that should automatically open after the installation completes</figcaption>
+</figure>
+</p>
+<p>It will also create an icon on your desktop that you can use to open it next time
+<figure class="content-center">
+    <img src="../static/aseen-desktop-shortcut.png" alt="Desktop icon that is automatically created during installation" />
+    <figcaption class="caption">Desktop icon that is automatically created during installation</figcaption>
+</figure>
+</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
+    <div class="flex items-center text-blue-500 dark:text-blue-400">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill-rule="evenodd" d="M20.322.75a10.75 10.75 0 00-7.373 2.926l-1.304 1.23A23.743 23.743 0 0010.103 6.5H5.066a1.75 1.75 0 00-1.5.85l-2.71 4.514a.75.75 0 00.49 1.12l4.571.963c.039.049.082.096.129.14L8.04 15.96l1.872 1.994c.044.047.091.09.14.129l.963 4.572a.75.75 0 001.12.488l4.514-2.709a1.75 1.75 0 00.85-1.5v-5.038a23.741 23.741 0 001.596-1.542l1.228-1.304a10.75 10.75 0 002.925-7.374V2.499A1.75 1.75 0 0021.498.75h-1.177zM16 15.112c-.333.248-.672.487-1.018.718l-3.393 2.262.678 3.223 3.612-2.167a.25.25 0 00.121-.214v-3.822zm-10.092-2.7L8.17 9.017c.23-.346.47-.685.717-1.017H5.066a.25.25 0 00-.214.121l-2.167 3.612 3.223.679zm8.07-7.644a9.25 9.25 0 016.344-2.518h1.177a.25.25 0 01.25.25v1.176a9.25 9.25 0 01-2.517 6.346l-1.228 1.303a22.248 22.248 0 01-3.854 3.257l-3.288 2.192-1.743-1.858a.764.764 0 00-.034-.034l-1.859-1.744 2.193-3.29a22.248 22.248 0 013.255-3.851l1.304-1.23zM17.5 8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm-11 13c.9-.9.9-2.6 0-3.5-.9-.9-2.6-.9-3.5 0-1.209 1.209-1.445 3.901-1.49 4.743a.232.232 0 00.247.247c.842-.045 3.534-.281 4.743-1.49z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">Go back to Quickstart Guide</span>
+    </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>/quickstart/#getting-started</span>
+    </div>
+    <a href="/quickstart/#getting-started" class="absolute block inset-0"></a>
+</div>
+</p>
 
 
 
