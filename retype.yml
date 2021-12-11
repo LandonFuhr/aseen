@@ -7,13 +7,16 @@ branding:
 meta:
   title: " | Aseen"
 links:
-- text: Install
-  link: install.md
-  icon: download
-- text: GitHub
-  link: https://github.com/LandonFuhr/aseen
-  icon: mark-github
-  target: blank
+  - text: Home
+    link: index.md
+    icon: home
+  - text: Install
+    link: install.md
+    icon: download
+  - text: GitHub
+    link: https://github.com/LandonFuhr/aseen
+    icon: mark-github
+    target: blank
 favicon: static/favicon.ico
 footer:
   copyright: "Chan Lab, {{ year }}. University of Alberta, Canada."
