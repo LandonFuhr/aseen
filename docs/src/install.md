@@ -33,4 +33,4 @@ Once it finishes installing, it should automatically open the app!
 It will also create an icon on your desktop that you can use to open it next time
 ![Desktop icon that is automatically created during installation](static/aseen-desktop-shortcut.png)
 
-[!ref icon="rocket" text="Go back to Quickstart Guide"](quickstart.md#start-analyzing)
+[!ref icon="rocket" text="Go back to Quickstart Guide"](quickstart.md#getting-started)
