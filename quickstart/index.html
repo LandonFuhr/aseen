@@ -8,28 +8,30 @@
     <!-- Primary Meta Tags -->
     <title>Quickstart Guide | Aseen</title>
     <meta name="title" content="Quickstart Guide | Aseen">
-    <meta name="description" content="Go to the Install page to download and install Aseen. Come back here afterwards to see how to use Aseen!" />
+    <meta name="description" content="Go to the Install Guide to download and install Aseen. Come back here afterwards to see how to use it!" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.aseen.xyz/quickstart/">
     <meta property="og:title" content="Quickstart Guide | Aseen">
-    <meta property="og:description" content="Go to the Install page to download and install Aseen. Come back here afterwards to see how to use Aseen!">
+    <meta property="og:description" content="Go to the Install Guide to download and install Aseen. Come back here afterwards to see how to use it!">
+    <meta property="og:image" content="https://www.aseen.xyz/static/behaviour-tests-all.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.aseen.xyz/quickstart/">
     <meta property="twitter:title" content="Quickstart Guide | Aseen">
-    <meta property="twitter:description" content="Go to the Install page to download and install Aseen. Come back here afterwards to see how to use Aseen!">
+    <meta property="twitter:description" content="Go to the Install Guide to download and install Aseen. Come back here afterwards to see how to use it!">
+    <meta property="twitter:image" content="https://www.aseen.xyz/static/behaviour-tests-all.png">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=1.11.1.692500723410" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.1.692502847865" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692500723410" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692502847865" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=1.11.1" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692500723410" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692502847865" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -226,7 +228,7 @@
         <span>Install</span>
     </h2>
 </doc-anchor-target>
-<p>Go to the <a href="../install/">Install page</a> to download and install Aseen. Come back here afterwards to see how to use Aseen!
+<p>Go to the <a href="../install/">Install Guide</a> to download and install Aseen. Come back here afterwards to see how to use it!
 <div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
     <div class="flex items-center text-blue-500 dark:text-blue-400">
         <span class="inline-block mb-px">
@@ -246,6 +248,53 @@
         <span>Getting Started</span>
     </h2>
 </doc-anchor-target>
+<p>Aseen works in 3 steps:</p>
+<ol>
+<li>Select your arena type</li>
+<li>Setup your video with shapes over the important parts</li>
+<li>Let the computer do the hard work of analyzing the video!</li>
+</ol>
+<doc-anchor-target id="1-arena-type">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1-arena-type">#</doc-anchor-trigger>
+        <span>1. Arena Type</span>
+    </h3>
+</doc-anchor-target>
+<p>The arena types are presets for common types of mouse behavioural tests. Right now, they include the following types:</p>
+<ul>
+<li><a href="../behaviour-tests/three-chamber/">Three-Chamber Test</a></li>
+<li><a href="../behaviour-tests/epm/">Elevated Plus Maze Test</a></li>
+<li><a href="../behaviour-tests/nort/">Novel Object Recognition Test</a></li>
+</ul>
+<p><figure class="content-center">
+    <img src="../static/behaviour-tests-all.png" alt="Behaviour test presets on the home page" />
+    <figcaption class="caption">Behaviour test presets on the home page</figcaption>
+</figure>
+</p>
+<p>For this tutorial, we will use the <strong>Three-Chamber</strong> arena type. Click on the card to go to the next screen</p>
+<doc-anchor-target id="2-video-setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2-video-setup">#</doc-anchor-trigger>
+        <span>2. Video Setup</span>
+    </h3>
+</doc-anchor-target>
+<p>First, we need to pick which video to analyze. For this tutorial, you can download and use the sample video from here: <a href="">download sample video</a></p>
+<p><figure class="content-center">
+    <img src="../static/select-video.png" alt="Select video button highlighted on the video setup page" />
+    <figcaption class="caption">Select video button highlighted on the video setup page</figcaption>
+</figure>
+</p>
+<p>Now that the video is loaded, it will show the three chambers and two cups that are standard in <a href="../behaviour-tests/three-chamber/">three-chamber tests</a>. We will have to adjust these a bit to match our video. Select each shape from the sidebar and then adjust it to match the video. You can also select a shape by click directly on video</p>
+<p>The video will automatically start playing when the page loads. Use the controls at the bottom of the video to pause the video. You can use the seek bar to go to a different point in the video if it&#x27;s easier to see the chambers or cups</p>
+<p><figure class="content-center">
+    <img src="" alt="Sidebar highlighted showing shape selection buttons for arena placement" />
+    <figcaption class="caption">Sidebar highlighted showing shape selection buttons for arena placement</figcaption>
+</figure>
+<figure class="content-center">
+    <img src="" alt="Video controls to play/pause or skip to a certain time" />
+    <figcaption class="caption">Video controls to play/pause or skip to a certain time</figcaption>
+</figure>
+</p>
 
 
 
