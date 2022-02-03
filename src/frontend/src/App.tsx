@@ -7,12 +7,15 @@ import Builder from "./pages/builder";
 import Analyzing from "./pages/analyzing";
 import Results from "./pages/results";
 import { Page } from "./core/types";
+import { VideoOptimizerProvider } from "./components/VideoOptimizerProvider";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <PersistentProviders>
-        <Main />
+        <VideoOptimizerProvider>
+          <Main />
+        </VideoOptimizerProvider>
       </PersistentProviders>
     </ThemeProvider>
   );

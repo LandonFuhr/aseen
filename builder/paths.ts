@@ -32,6 +32,11 @@ const videoCreator = {
   distPath: analysisModulesDir,
   name: "video_creator",
 };
+const videoOptimizer = {
+  main: path.join(pySrc, "video_optimizer.py"),
+  distPath: analysisModulesDir,
+  name: "video_optimizer",
+};
 const tracking = {
   main: path.join(pySrc, "tracking.py"),
   distPath: analysisModulesDir,
@@ -52,6 +57,7 @@ export {
   buildDir,
   behaviour,
   videoCreator,
+  videoOptimizer,
   tracking,
   splash,
   pyinstaller,

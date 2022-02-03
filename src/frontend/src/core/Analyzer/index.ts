@@ -120,7 +120,7 @@ export function stopAllAnalyzers() {
   }
 }
 
-function createStep<Args>({
+export function createStep<Args>({
   args,
   ipcController,
 }: {

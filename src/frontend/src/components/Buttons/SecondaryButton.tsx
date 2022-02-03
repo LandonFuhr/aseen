@@ -1,17 +1,12 @@
 import { Button } from "@material-ui/core";
 import { CustomButtonProps } from ".";
 
-const DestructiveButton = (props: CustomButtonProps) => {
+export const SecondaryButton = (props: CustomButtonProps) => {
   return (
-    <Button
-      style={{ fill: "#ba3e3e", color: "#ba3e3e" }}
-      onClick={props.onClick}
-    >
+    <Button color="primary" onClick={props.onClick} disabled={props.disabled}>
       {props.icon}
       <div style={{ minWidth: "10px" }} />
       {props.text}
     </Button>
   );
 };
-
-export default DestructiveButton;

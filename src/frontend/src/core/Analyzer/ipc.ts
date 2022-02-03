@@ -2,6 +2,7 @@ import {
   BEHAVIOUR_CHANNEL,
   CREATE_VIDEO_CHANNEL,
   TRACKING_CHANNEL,
+  VIDEO_OPTIMIZER_CHANNEL,
 } from "../../shared/ipc";
 import {
   AnalysisIpcResponse,
@@ -9,6 +10,7 @@ import {
   BehaviourArgs,
   TrackingArgs,
   VideoCreatorArgs,
+  VideoOptimizerArgs,
 } from "../../shared/ipc/analysis";
 import { ipcRenderer } from "../electron/ipc";
 
@@ -45,3 +47,9 @@ export const ipcBehaviourController = createIpcController<BehaviourArgs>({
 export const ipcVideoCreatorController = createIpcController<VideoCreatorArgs>({
   channel: CREATE_VIDEO_CHANNEL,
 });
+
+export const ipcVideoOptimizerController = createIpcController<VideoOptimizerArgs>(
+  {
+    channel: VIDEO_OPTIMIZER_CHANNEL,
+  }
+);

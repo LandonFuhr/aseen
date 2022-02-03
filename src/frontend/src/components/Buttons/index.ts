@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { OutlineButton } from "./OutlineButton";
 import { PrimaryButton } from "./PrimaryButton";
+import { SecondaryButton } from "./SecondaryButton";
 
 export interface CustomButtonProps {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
@@ -9,4 +10,4 @@ export interface CustomButtonProps {
   icon: React.ReactNode;
 }
 
-export { OutlineButton, PrimaryButton };
+export { OutlineButton, PrimaryButton, SecondaryButton };

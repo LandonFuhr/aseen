@@ -9,6 +9,7 @@ import {
   READ_BEHAVIOUR_RESULTS_FILE_CHANNEL,
   READ_ALL_SAVED_RESULTS,
   SAVE_RESULTS,
+  VIDEO_OPTIMIZER_CHANNEL,
 } from "../../frontend/src/shared/ipc";
 import { BrowserWindow, ipcMain } from "electron";
 import {
@@ -26,11 +27,13 @@ export function setupIpcListeners({
   backgroundTrackingWindow,
   backgroundBehaviourWindow,
   backgroundVideoCreatorWindow,
+  backgroundVideoOptimizerWindow,
   reactWindow,
 }: {
   backgroundTrackingWindow: BrowserWindow;
   backgroundBehaviourWindow: BrowserWindow;
   backgroundVideoCreatorWindow: BrowserWindow;
+  backgroundVideoOptimizerWindow: BrowserWindow;
   reactWindow: BrowserWindow;
 }) {
   forwardBidirectionalMessagesBetweenWindows({
@@ -44,6 +47,10 @@ export function setupIpcListeners({
   forwardBidirectionalMessagesBetweenWindows({
     channel: CREATE_VIDEO_CHANNEL,
     windows: [backgroundVideoCreatorWindow, reactWindow],
+  });
+  forwardBidirectionalMessagesBetweenWindows({
+    channel: VIDEO_OPTIMIZER_CHANNEL,
+    windows: [backgroundVideoOptimizerWindow, reactWindow],
   });
   listenToDialogOpenIpc();
   listenToFileMetadataRequestsIpc();

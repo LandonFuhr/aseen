@@ -28,8 +28,10 @@ import { ArenaEditor } from "./ArenaEditor";
 import { getArenaSetup } from "../../core/ArenaSetupConverter";
 import { nortPresetShapes } from "../../core/arenaPresets/NORT/regions";
 import { fitNortShapes } from "../../core/arenaPresets/NORT/fitter";
+import { useVideoOptimizer } from "../../components/VideoOptimizerProvider";
 
 const Builder = () => {
+  const optimizer = useVideoOptimizer();
   const arenaTypeState = useArenaType();
   const router = useRouter();
   const vidPathState = useVideoPathState();
@@ -58,8 +60,8 @@ const Builder = () => {
   }, [shapeEditorRef, setSelectedShapeId]);
 
   useEffect(() => {
-    setCanSave(vidPathState.path !== null);
-  }, [vidPathState.path]);
+    setCanSave(vidPathState.path !== null && !optimizer?.isRunning);
+  }, [vidPathState.path, optimizer?.isRunning]);
 
   function handleExitClick() {
     vidPathState.setPath(null);
@@ -87,6 +89,7 @@ const Builder = () => {
             <Grid item xs={12}>
               <Box mb={2}>
                 <BuilderActions
+                  hasVideo={canSave}
                   onExitClick={handleExitClick}
                   onSaveClick={canSave ? handleSaveClick : undefined}
                 />

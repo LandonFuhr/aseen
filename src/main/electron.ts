@@ -26,10 +26,19 @@ app.whenReady().then(() => {
       "video_creator.html"
     )
   );
+  const backgroundVideoOptimizerWindow = createBackgroundWindow(
+    path.join(
+      __dirname,
+      "analysis_modules",
+      "video_optimizer",
+      "video_optimizer.html"
+    )
+  );
   const reactWindow = createReactWindow([
     backgroundTrackingWindow,
     backgroundBehaviourWindow,
     backgroundVideoCreatorWindow,
+    backgroundVideoOptimizerWindow,
   ]);
 
   reactWindow.on("ready-to-show", () => {
@@ -41,6 +50,7 @@ app.whenReady().then(() => {
     backgroundTrackingWindow,
     backgroundBehaviourWindow,
     backgroundVideoCreatorWindow,
+    backgroundVideoOptimizerWindow,
     reactWindow,
   });
 
