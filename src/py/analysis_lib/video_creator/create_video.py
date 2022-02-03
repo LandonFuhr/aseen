@@ -1,6 +1,5 @@
 import pandas as pd
 import cv2
-import time
 
 from analysis_lib.dlc_results_adapter import DlcResults
 from analysis_lib.video_creator.progress_updater import send_progress_update
@@ -12,6 +11,10 @@ def create_video(raw_video_path: str, tracking_h5_path: str, behaviour_json_path
     dlc_results = DlcResults.from_pandas(dlc_dataframe)
 
     def modify_frame(frame, i):
+        if i >= len(dlc_results):
+            print('Frame index exceeds dlc data length. Skipping frame')
+            return frame
+
         if i % 50 == 0:
             send_progress_update(percentComplete=(
                 (i / len(dlc_results)) * 100), timeRemainingInMs=(len(dlc_results) - i) * 100)
@@ -70,9 +73,12 @@ class IterableVideo:
 def setup_vid_in_and_out(input_video_path, output_video_path):
     vid_in = cv2.VideoCapture(input_video_path)
     fps = vid_in.get(cv2.CAP_PROP_FPS)
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    # when fourcc was not -1, video wouldn't play in HTML files (including electron)
+    fourcc = -1
+    output_video_size = (int(vid_in.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                         int(vid_in.get(cv2.CAP_PROP_FRAME_HEIGHT)))
     vid_out = cv2.VideoWriter(
-        output_video_path, fourcc, fps, (int(vid_in.get(3)), int(vid_in.get(4))))
+        output_video_path, fourcc, fps, output_video_size)
     return vid_in, vid_out
 
 
