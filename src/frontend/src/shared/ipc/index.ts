@@ -11,6 +11,7 @@ export const RESULTS_PATHS_CREATION_CHANNEL = "create-results-paths";
 export const READ_BEHAVIOUR_RESULTS_FILE_CHANNEL = "read-behaviour-results";
 export const SAVE_RESULTS = "save-results";
 export const READ_ALL_SAVED_RESULTS = "read-all-saved-results";
+export const VIDEO_OPTIMIZER_CHANNEL = "video-optimizer";
 
 export interface FileMetadata {
   createdAtDate: Date;

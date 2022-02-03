@@ -3,6 +3,7 @@ import {
   BEHAVIOUR_CHANNEL,
   CREATE_VIDEO_CHANNEL,
   TRACKING_CHANNEL,
+  VIDEO_OPTIMIZER_CHANNEL,
 } from "../frontend/src/shared/ipc";
 import {
   AnalysisIpcResponse,
@@ -10,6 +11,7 @@ import {
   BehaviourArgs,
   TrackingArgs,
   VideoCreatorArgs,
+  VideoOptimizerArgs,
 } from "../frontend/src/shared/ipc/analysis";
 
 function createIpcAnalyzer<Args>({ channel }: { channel: string }) {
@@ -33,6 +35,10 @@ export const ipcBehaviourAnalyzer = createIpcAnalyzer<BehaviourArgs>({
 
 export const ipcVideoCreatorAnalyzer = createIpcAnalyzer<VideoCreatorArgs>({
   channel: CREATE_VIDEO_CHANNEL,
+});
+
+export const ipcVideoOptimizerAnalyzer = createIpcAnalyzer<VideoOptimizerArgs>({
+  channel: VIDEO_OPTIMIZER_CHANNEL,
 });
 
 export function setupAnalysisRunner<Args>({

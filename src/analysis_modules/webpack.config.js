@@ -62,7 +62,12 @@ function createProdConfig({ name }) {
   };
 }
 
-const analysisModuleNames = ["video_creator", "behaviour", "tracking"];
+const analysisModuleNames = [
+  "video_creator",
+  "behaviour",
+  "tracking",
+  "video_optimizer",
+];
 const configs = [];
 for (const moduleName of analysisModuleNames) {
   configs.push(

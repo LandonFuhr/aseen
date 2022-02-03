@@ -1,4 +1,5 @@
 import { AnalyzingProgressStep } from "../../pages/analyzing/types";
+import { VideoTransformation } from "./VideoTransformation";
 
 type AnalysisIpcUpdate = ProgressUpdate;
 export type AnalysisIpcExit = ErrorExit | SuccessExit | KillExit;
@@ -60,4 +61,10 @@ export interface VideoCreatorArgs {
   trackingResultsH5Path: string;
   behaviourResultsJsonPath: string;
   outputVideoPath: string;
+}
+
+export interface VideoOptimizerArgs {
+  inputVideoPath: string;
+  outputVideoPath: string;
+  transformations: VideoTransformation[];
 }
